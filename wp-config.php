@@ -4,7 +4,6 @@
 // Load database info and local development parameters
 // ===================================================
 if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
-	define( 'WP_LOCAL_DEV', true );
 	include( dirname( __FILE__ ) . '/local-config.php' );
 } else {
 	define( 'WP_LOCAL_DEV', false );
@@ -12,13 +11,13 @@ if ( file_exists( dirname( __FILE__ ) . '/local-config.php' ) ) {
 	define( 'DB_USER', '%%DB_USER%%' );
 	define( 'DB_PASSWORD', '%%DB_PASSWORD%%' );
 	define( 'DB_HOST', '%%DB_HOST%%' ); // Probably 'localhost'
+	define( 'WP_CONTENT_URL', 'https://' . $_SERVER['HTTP_HOST'] . '/content' );
 }
 
 // ========================
 // Custom Content Directory
 // ========================
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/content' );
-define( 'WP_CONTENT_URL', 'https://' . $_SERVER['HTTP_HOST'] . '/content' );
 
 // ================================================
 // You almost certainly do not want to change these
