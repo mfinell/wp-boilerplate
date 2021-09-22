@@ -10,11 +10,11 @@
  * the corresponding stylesheet.
  *
  * @param WP_Theme_JSON_Gutenberg $tree Input tree.
- * @param string                  $type Type of stylesheet we want accepts 'all', 'block_styles', and 'css_variables'.
+ * @param string                  $type Type of stylesheet. It accepts 'all', 'block_styles', 'css_variables', 'presets'.
  *
  * @return string Stylesheet.
  */
-function gutenberg_experimental_global_styles_get_stylesheet( $tree, $type = 'all' ) {
+function gutenberg_experimental_global_styles_get_stylesheet( $tree, $type = null ) {
 	// Check if we can use cached.
 	$can_use_cached = (
 		( 'all' === $type ) &&
@@ -32,7 +32,27 @@ function gutenberg_experimental_global_styles_get_stylesheet( $tree, $type = 'al
 		}
 	}
 
-	$stylesheet = $tree->get_stylesheet( $type );
+	$supports_theme_json = WP_Theme_JSON_Resolver_Gutenberg::theme_has_support();
+	$supports_link_color = get_theme_support( 'experimental-link-color' );
+
+	// Only modify the $type if the consumer hasn't provided any.
+	if ( null === $type && ! $supports_theme_json ) {
+		$type = 'presets';
+	} elseif ( null === $type ) {
+		$type = 'all';
+	}
+
+	$origins = array( 'core', 'theme', 'user' );
+	if ( ! $supports_theme_json && ! $supports_link_color ) {
+		// In this case we only enqueue the core presets (CSS Custom Properties + the classes).
+		$origins = array( 'core' );
+	} elseif ( ! $supports_theme_json && $supports_link_color ) {
+		// For the legacy link color feauter to work, the CSS Custom Properties
+		// should be in scope (either the core or the theme ones).
+		$origins = array( 'core', 'theme' );
+	}
+
+	$stylesheet = $tree->get_stylesheet( $type, $origins );
 
 	if ( $can_use_cached ) {
 		// Cache for a minute.
@@ -48,12 +68,6 @@ function gutenberg_experimental_global_styles_get_stylesheet( $tree, $type = 'al
  * and enqueues the resulting stylesheet.
  */
 function gutenberg_experimental_global_styles_enqueue_assets() {
-	if (
-		! get_theme_support( 'experimental-link-color' ) && // link color support needs the presets CSS variables regardless of the presence of theme.json file.
-		! WP_Theme_JSON_Resolver_Gutenberg::theme_has_support() ) {
-		return;
-	}
-
 	$settings = gutenberg_get_default_block_editor_settings();
 	$all      = WP_Theme_JSON_Resolver_Gutenberg::get_merged_data( $settings );
 
@@ -141,15 +155,17 @@ function gutenberg_experimental_global_styles_settings( $settings ) {
 		}
 
 		// Reset existing global styles.
-		foreach ( $settings['styles'] as $key => $style ) {
-			if ( isset( $style['__unstableType'] ) && 'globalStyles' === $style['__unstableType'] ) {
-				unset( $settings['styles'][ $key ] );
+		$styles_without_existing_global_styles = array();
+		foreach ( $settings['styles'] as $style ) {
+			if ( ! isset( $style['__unstableType'] ) || 'globalStyles' !== $style['__unstableType'] ) {
+				$styles_without_existing_global_styles[] = $style;
 			}
 		}
 
 		// Add the new ones.
-		$settings['styles'][] = $css_variables;
-		$settings['styles'][] = $block_styles;
+		$styles_without_existing_global_styles[] = $css_variables;
+		$styles_without_existing_global_styles[] = $block_styles;
+		$settings['styles']                      = $styles_without_existing_global_styles;
 	}
 
 	// Copied from get_block_editor_settings() at wordpress-develop/block-editor.php.
