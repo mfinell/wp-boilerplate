@@ -23,16 +23,7 @@ function gutenberg_register_url_details_routes() {
 add_action( 'rest_api_init', 'gutenberg_register_url_details_routes' );
 
 /**
- * Registers the block pattern directory.
- */
-function gutenberg_register_rest_pattern_directory() {
-	$block_directory_controller = new WP_REST_Pattern_Directory_Controller();
-	$block_directory_controller->register_routes();
-}
-add_filter( 'rest_api_init', 'gutenberg_register_rest_pattern_directory' );
-
-/**
- * Registers the menu locations area REST API routes.
+ * Registers the menu locations REST API routes.
  */
 function gutenberg_register_rest_menu_location() {
 	$nav_menu_location = new WP_REST_Menu_Locations_Controller();
@@ -41,28 +32,22 @@ function gutenberg_register_rest_menu_location() {
 add_action( 'rest_api_init', 'gutenberg_register_rest_menu_location' );
 
 /**
- * Registers the menu locations area REST API routes.
+ * Registers the navigation areas REST API routes.
  */
-function gutenberg_register_rest_customizer_nonces() {
-	$nav_menu_location = new WP_Rest_Customizer_Nonces();
-	$nav_menu_location->register_routes();
+function gutenberg_register_rest_navigation_areas() {
+	$navigation_areas = new WP_REST_Block_Navigation_Areas_Controller();
+	$navigation_areas->register_routes();
 }
-add_action( 'rest_api_init', 'gutenberg_register_rest_customizer_nonces' );
+add_action( 'rest_api_init', 'gutenberg_register_rest_navigation_areas' );
 
 /**
- * Registers the Sidebars & Widgets REST API routes.
+ * Registers the customizer nonces REST API routes.
  */
-function gutenberg_register_sidebars_and_widgets_endpoint() {
-	$sidebars = new WP_REST_Sidebars_Controller();
-	$sidebars->register_routes();
-
-	$widgets = new WP_REST_Widgets_Controller();
-	$widgets->register_routes();
-
-	$widget_types = new WP_REST_Widget_Types_Controller();
-	$widget_types->register_routes();
+function gutenberg_register_rest_customizer_nonces() {
+	$customizer_nonces = new WP_Rest_Customizer_Nonces();
+	$customizer_nonces->register_routes();
 }
-add_action( 'rest_api_init', 'gutenberg_register_sidebars_and_widgets_endpoint' );
+add_action( 'rest_api_init', 'gutenberg_register_rest_customizer_nonces' );
 
 /**
  * Registers the Block editor settings REST API routes.
@@ -224,3 +209,14 @@ function gutenberg_rest_user_collection_params_has_published_posts( $query_param
 	return $query_params;
 }
 add_filter( 'rest_user_collection_params', 'gutenberg_rest_user_collection_params_has_published_posts' );
+
+/**
+ * Registers the Edit Site's Export REST API routes.
+ *
+ * @return void
+ */
+function gutenberg_register_edit_site_export_endpoint() {
+	$editor_settings = new WP_REST_Edit_Site_Export_Controller();
+	$editor_settings->register_routes();
+}
+add_action( 'rest_api_init', 'gutenberg_register_edit_site_export_endpoint' );

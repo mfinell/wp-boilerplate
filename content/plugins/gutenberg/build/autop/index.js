@@ -164,7 +164,8 @@ function replaceInHtmlTags(haystack, replacePairs) {
  */
 
 
-function autop(text, br = true) {
+function autop(text) {
+  let br = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
   const preTags = [];
 
   if (text.trim() === '') {
@@ -435,7 +436,7 @@ function removep(html) {
 
   return html;
 }
-//# sourceMappingURL=index.js.map
+
 (window.wp = window.wp || {}).autop = __webpack_exports__;
 /******/ })()
 ;

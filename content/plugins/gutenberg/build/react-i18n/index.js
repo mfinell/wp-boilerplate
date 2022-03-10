@@ -73,8 +73,6 @@ var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
 /**
  * External dependencies
  */
-// Disable reason: Type-only import, this is fine. See https://github.com/typescript-eslint/typescript-eslint/issues/2661
-// eslint-disable-next-line no-restricted-imports
 
 /**
  * WordPress dependencies
@@ -182,7 +180,7 @@ function withI18n(InnerComponent) {
   EnhancedComponent.displayName = `WithI18n(${innerComponentName})`;
   return EnhancedComponent;
 }
-//# sourceMappingURL=index.js.map
+
 (window.wp = window.wp || {}).reactI18n = __webpack_exports__;
 /******/ })()
 ;

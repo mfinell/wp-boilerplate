@@ -72,7 +72,10 @@ var external_wp_data_namespaceObject = window["wp"]["data"];
  *
  * @return {Object} Updated state.
  */
-function reducer(state = {}, action) {
+function reducer() {
+  let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  let action = arguments.length > 1 ? arguments[1] : undefined;
+
   switch (action.type) {
     case 'SET_IS_MATCHING':
       return action.values;
@@ -82,7 +85,7 @@ function reducer(state = {}, action) {
 }
 
 /* harmony default export */ var store_reducer = (reducer);
-//# sourceMappingURL=reducer.js.map
+
 ;// CONCATENATED MODULE: ./packages/viewport/build-module/store/actions.js
 /**
  * Returns an action object used in signalling that viewport queries have been
@@ -99,7 +102,7 @@ function setIsMatching(values) {
     values
   };
 }
-//# sourceMappingURL=actions.js.map
+
 ;// CONCATENATED MODULE: ./packages/viewport/build-module/store/selectors.js
 /**
  * Returns true if the viewport matches the given query, or false otherwise.
@@ -125,7 +128,7 @@ function isViewportMatch(state, query) {
 
   return !!state[query];
 }
-//# sourceMappingURL=selectors.js.map
+
 ;// CONCATENATED MODULE: ./packages/viewport/build-module/store/index.js
 /**
  * WordPress dependencies
@@ -153,7 +156,7 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
   selectors: selectors_namespaceObject
 });
 (0,external_wp_data_namespaceObject.register)(store);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/viewport/build-module/listener.js
 /**
  * External dependencies
@@ -207,7 +210,7 @@ const addDimensionsEventListener = (breakpoints, operators) => {
 };
 
 /* harmony default export */ var listener = (addDimensionsEventListener);
-//# sourceMappingURL=listener.js.map
+
 ;// CONCATENATED MODULE: external ["wp","compose"]
 var external_wp_compose_namespaceObject = window["wp"]["compose"];
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
@@ -292,7 +295,7 @@ const withViewportMatch = queries => {
 };
 
 /* harmony default export */ var with_viewport_match = (withViewportMatch);
-//# sourceMappingURL=with-viewport-match.js.map
+
 ;// CONCATENATED MODULE: ./packages/viewport/build-module/if-viewport-matches.js
 /**
  * WordPress dependencies
@@ -329,7 +332,7 @@ const ifViewportMatches = query => (0,external_wp_compose_namespaceObject.create
 }), (0,external_wp_compose_namespaceObject.ifCondition)(props => props.isViewportMatch)]), 'ifViewportMatches');
 
 /* harmony default export */ var if_viewport_matches = (ifViewportMatches);
-//# sourceMappingURL=if-viewport-matches.js.map
+
 ;// CONCATENATED MODULE: ./packages/viewport/build-module/index.js
 /**
  * Internal dependencies
@@ -365,7 +368,7 @@ const OPERATORS = {
   '>=': 'min-width'
 };
 listener(BREAKPOINTS, OPERATORS);
-//# sourceMappingURL=index.js.map
+
 (window.wp = window.wp || {}).viewport = __webpack_exports__;
 /******/ })()
 ;

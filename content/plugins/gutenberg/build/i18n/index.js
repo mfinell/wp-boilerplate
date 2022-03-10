@@ -1,7 +1,7 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 9588:
+/***/ 9756:
 /***/ (function(module) {
 
 /**
@@ -169,7 +169,7 @@ module.exports = memize;
 
 /***/ }),
 
-/***/ 8975:
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/* global window, exports, define */
@@ -488,10 +488,10 @@ __webpack_require__.d(__webpack_exports__, {
 });
 
 // EXTERNAL MODULE: ./node_modules/memize/index.js
-var memize = __webpack_require__(9588);
+var memize = __webpack_require__(9756);
 var memize_default = /*#__PURE__*/__webpack_require__.n(memize);
 // EXTERNAL MODULE: ./node_modules/sprintf-js/src/sprintf.js
-var sprintf = __webpack_require__(8975);
+var sprintf = __webpack_require__(124);
 var sprintf_default = /*#__PURE__*/__webpack_require__.n(sprintf);
 ;// CONCATENATED MODULE: ./packages/i18n/build-module/sprintf.js
 /**
@@ -521,8 +521,12 @@ const logErrorOnce = memize_default()(console.error); // eslint-disable-line no-
  * @return {string} The formatted string.
  */
 
-function sprintf_sprintf(format, ...args) {
+function sprintf_sprintf(format) {
   try {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
     return sprintf_default().sprintf(format, ...args);
   } catch (error) {
     if (error instanceof Error) {
@@ -532,7 +536,7 @@ function sprintf_sprintf(format, ...args) {
     return format;
   }
 }
-//# sourceMappingURL=sprintf.js.map
+
 ;// CONCATENATED MODULE: ./node_modules/@tannin/postfix/index.js
 var PRECEDENCE, OPENERS, TERMINATORS, PATTERN;
 
@@ -1080,7 +1084,18 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
 /**
  * @typedef {(data?: LocaleData, domain?: string) => void} SetLocaleData
  *
- * Merges locale data into the Tannin instance by domain. Accepts data in a
+ * Merges locale data into the Tannin instance by domain. Note that this
+ * function will overwrite the domain configuration. Accepts data in a
+ * Jed-formatted JSON object shape.
+ *
+ * @see http://messageformat.github.io/Jed/
+ */
+
+/**
+ * @typedef {(data?: LocaleData, domain?: string) => void} AddLocaleData
+ *
+ * Merges locale data into the Tannin instance by domain. Note that this
+ * function will also merge the domain configuration. Accepts data in a
  * Jed-formatted JSON object shape.
  *
  * @see http://messageformat.github.io/Jed/
@@ -1168,7 +1183,11 @@ const I18N_HOOK_REGEXP = /^i18n\.(n?gettext|has_translation)(_|$)/;
  *
  * @typedef I18n
  * @property {GetLocaleData}   getLocaleData   Returns locale data by domain in a Jed-formatted JSON object shape.
- * @property {SetLocaleData}   setLocaleData   Merges locale data into the Tannin instance by domain. Accepts data in a
+ * @property {SetLocaleData}   setLocaleData   Merges locale data into the Tannin instance by domain. Note that this
+ *                                             function will overwrite the domain configuration. Accepts data in a
+ *                                             Jed-formatted JSON object shape.
+ * @property {AddLocaleData}   addLocaleData   Merges locale data into the Tannin instance by domain. Note that this
+ *                                             function will also merge the domain configuration. Accepts data in a
  *                                             Jed-formatted JSON object shape.
  * @property {ResetLocaleData} resetLocaleData Resets all current Tannin instance locale data and sets the specified
  *                                             locale data for the domain. Accepts data in a Jed-formatted JSON object shape.
@@ -1220,29 +1239,56 @@ const createI18n = (initialData, initialDomain, hooks) => {
   /** @type {GetLocaleData} */
 
 
-  const getLocaleData = (domain = 'default') => tannin.data[domain];
+  const getLocaleData = function () {
+    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
+    return tannin.data[domain];
+  };
   /**
    * @param {LocaleData} [data]
    * @param {string}     [domain]
    */
 
 
-  const doSetLocaleData = (data, domain = 'default') => {
-    tannin.data[domain] = { ...DEFAULT_LOCALE_DATA,
-      ...tannin.data[domain],
+  const doSetLocaleData = function (data) {
+    var _tannin$data$domain;
+
+    let domain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
+    tannin.data[domain] = { ...tannin.data[domain],
       ...data
     }; // Populate default domain configuration (supported locale date which omits
     // a plural forms expression).
 
     tannin.data[domain][''] = { ...DEFAULT_LOCALE_DATA[''],
-      ...tannin.data[domain]['']
-    };
+      ...((_tannin$data$domain = tannin.data[domain]) === null || _tannin$data$domain === void 0 ? void 0 : _tannin$data$domain[''])
+    }; // Clean up cached plural forms functions cache as it might be updated.
+
+    delete tannin.pluralForms[domain];
   };
   /** @type {SetLocaleData} */
 
 
   const setLocaleData = (data, domain) => {
     doSetLocaleData(data, domain);
+    notifyListeners();
+  };
+  /** @type {AddLocaleData} */
+
+
+  const addLocaleData = function (data) {
+    var _tannin$data$domain2;
+
+    let domain = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
+    tannin.data[domain] = { ...tannin.data[domain],
+      ...data,
+      // Populate default domain configuration (supported locale date which omits
+      // a plural forms expression).
+      '': { ...DEFAULT_LOCALE_DATA[''],
+        ...((_tannin$data$domain2 = tannin.data[domain]) === null || _tannin$data$domain2 === void 0 ? void 0 : _tannin$data$domain2['']),
+        ...(data === null || data === void 0 ? void 0 : data[''])
+      }
+    }; // Clean up cached plural forms functions cache as it might be updated.
+
+    delete tannin.pluralForms[domain];
     notifyListeners();
   };
   /** @type {ResetLocaleData} */
@@ -1272,7 +1318,13 @@ const createI18n = (initialData, initialDomain, hooks) => {
    */
 
 
-  const dcnpgettext = (domain = 'default', context, single, plural, number) => {
+  const dcnpgettext = function () {
+    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
+    let context = arguments.length > 1 ? arguments[1] : undefined;
+    let single = arguments.length > 2 ? arguments[2] : undefined;
+    let plural = arguments.length > 3 ? arguments[3] : undefined;
+    let number = arguments.length > 4 ? arguments[4] : undefined;
+
     if (!tannin.data[domain]) {
       // use `doSetLocaleData` to set silently, without notifying listeners
       doSetLocaleData(undefined, domain);
@@ -1283,7 +1335,10 @@ const createI18n = (initialData, initialDomain, hooks) => {
   /** @type {GetFilterDomain} */
 
 
-  const getFilterDomain = (domain = 'default') => domain;
+  const getFilterDomain = function () {
+    let domain = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'default';
+    return domain;
+  };
   /** @type {__} */
 
 
@@ -1470,6 +1525,7 @@ const createI18n = (initialData, initialDomain, hooks) => {
   return {
     getLocaleData,
     setLocaleData,
+    addLocaleData,
     resetLocaleData,
     subscribe,
     __,
@@ -1480,7 +1536,7 @@ const createI18n = (initialData, initialDomain, hooks) => {
     hasTranslation
   };
 };
-//# sourceMappingURL=create-i18n.js.map
+
 ;// CONCATENATED MODULE: external ["wp","hooks"]
 var external_wp_hooks_namespaceObject = window["wp"]["hooks"];
 ;// CONCATENATED MODULE: ./packages/i18n/build-module/default-i18n.js
@@ -1630,12 +1686,12 @@ const isRTL = i18n.isRTL.bind(i18n);
  */
 
 const hasTranslation = i18n.hasTranslation.bind(i18n);
-//# sourceMappingURL=default-i18n.js.map
+
 ;// CONCATENATED MODULE: ./packages/i18n/build-module/index.js
 
 
 
-//# sourceMappingURL=index.js.map
+
 }();
 (window.wp = window.wp || {}).i18n = __webpack_exports__;
 /******/ })()

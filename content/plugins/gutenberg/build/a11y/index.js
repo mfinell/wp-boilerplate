@@ -91,7 +91,7 @@ function addIntroText() {
 
   return introText;
 }
-//# sourceMappingURL=add-intro-text.js.map
+
 ;// CONCATENATED MODULE: ./packages/a11y/build-module/add-container.js
 /**
  * Build the live regions markup.
@@ -100,7 +100,8 @@ function addIntroText() {
  *
  * @return {HTMLDivElement} The ARIA live region HTML element.
  */
-function addContainer(ariaLive = 'polite') {
+function addContainer() {
+  let ariaLive = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'polite';
   const container = document.createElement('div');
   container.id = `a11y-speak-${ariaLive}`;
   container.className = 'a11y-speak-region';
@@ -118,7 +119,7 @@ function addContainer(ariaLive = 'polite') {
 
   return container;
 }
-//# sourceMappingURL=add-container.js.map
+
 ;// CONCATENATED MODULE: ./packages/a11y/build-module/clear.js
 /**
  * Clears the a11y-speak-region elements and hides the explanatory text.
@@ -136,7 +137,7 @@ function clear() {
     introText.setAttribute('hidden', 'hidden');
   }
 }
-//# sourceMappingURL=clear.js.map
+
 ;// CONCATENATED MODULE: ./packages/a11y/build-module/filter-message.js
 let previousMessage = '';
 /**
@@ -168,7 +169,7 @@ function filterMessage(message) {
   previousMessage = message;
   return message;
 }
-//# sourceMappingURL=filter-message.js.map
+
 ;// CONCATENATED MODULE: ./packages/a11y/build-module/index.js
 /**
  * WordPress dependencies
@@ -253,7 +254,7 @@ function speak(message, ariaLive) {
     introText.removeAttribute('hidden');
   }
 }
-//# sourceMappingURL=index.js.map
+
 (window.wp = window.wp || {}).a11y = __webpack_exports__;
 /******/ })()
 ;

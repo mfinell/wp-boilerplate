@@ -74,7 +74,8 @@ const logged = Object.create(null);
  * ```
  */
 
-function deprecated(feature, options = {}) {
+function deprecated(feature) {
+  let options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   const {
     since,
     version,
@@ -115,7 +116,7 @@ function deprecated(feature, options = {}) {
   logged[message] = true;
 }
 /** @typedef {import('utility-types').NonUndefined<Parameters<typeof deprecated>[1]>} DeprecatedOptions */
-//# sourceMappingURL=index.js.map
-(window.wp = window.wp || {}).deprecated = __webpack_exports__.default;
+
+(window.wp = window.wp || {}).deprecated = __webpack_exports__["default"];
 /******/ })()
 ;

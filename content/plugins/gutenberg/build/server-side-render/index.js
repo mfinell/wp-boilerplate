@@ -100,7 +100,9 @@ var external_wp_blocks_namespaceObject = window["wp"]["blocks"];
 
 
 
-function rendererPath(block, attributes = null, urlQueryArgs = {}) {
+function rendererPath(block) {
+  let attributes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  let urlQueryArgs = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   return (0,external_wp_url_namespaceObject.addQueryArgs)(`/wp/v2/block-renderer/${block}`, {
     context: 'edit',
     ...(null !== attributes ? {
@@ -110,18 +112,20 @@ function rendererPath(block, attributes = null, urlQueryArgs = {}) {
   });
 }
 
-function DefaultEmptyResponsePlaceholder({
-  className
-}) {
+function DefaultEmptyResponsePlaceholder(_ref) {
+  let {
+    className
+  } = _ref;
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Placeholder, {
     className: className
   }, (0,external_wp_i18n_namespaceObject.__)('Block rendered as empty.'));
 }
 
-function DefaultErrorResponsePlaceholder({
-  response,
-  className
-}) {
+function DefaultErrorResponsePlaceholder(_ref2) {
+  let {
+    response,
+    className
+  } = _ref2;
   const errorMessage = (0,external_wp_i18n_namespaceObject.sprintf)( // translators: %s: error message describing the problem
   (0,external_wp_i18n_namespaceObject.__)('Error loading block: %s'), response.errorMsg);
   return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Placeholder, {
@@ -129,12 +133,28 @@ function DefaultErrorResponsePlaceholder({
   }, errorMessage);
 }
 
-function DefaultLoadingResponsePlaceholder({
-  className
-}) {
-  return (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Placeholder, {
-    className: className
-  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Spinner, null));
+function DefaultLoadingResponsePlaceholder(_ref3) {
+  let {
+    children,
+    showLoader
+  } = _ref3;
+  return (0,external_wp_element_namespaceObject.createElement)("div", {
+    style: {
+      position: 'relative'
+    }
+  }, showLoader && (0,external_wp_element_namespaceObject.createElement)("div", {
+    style: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      marginTop: '-9px',
+      marginLeft: '-9px'
+    }
+  }, (0,external_wp_element_namespaceObject.createElement)(external_wp_components_namespaceObject.Spinner, null)), (0,external_wp_element_namespaceObject.createElement)("div", {
+    style: {
+      opacity: showLoader ? '0.3' : 1
+    }
+  }, children));
 }
 
 function ServerSideRender(props) {
@@ -149,18 +169,18 @@ function ServerSideRender(props) {
     LoadingResponsePlaceholder = DefaultLoadingResponsePlaceholder
   } = props;
   const isMountedRef = (0,external_wp_element_namespaceObject.useRef)(true);
+  const [showLoader, setShowLoader] = (0,external_wp_element_namespaceObject.useState)(false);
   const fetchRequestRef = (0,external_wp_element_namespaceObject.useRef)();
   const [response, setResponse] = (0,external_wp_element_namespaceObject.useState)(null);
   const prevProps = (0,external_wp_compose_namespaceObject.usePrevious)(props);
+  const [isLoading, setIsLoading] = (0,external_wp_element_namespaceObject.useState)(false);
 
   function fetchData() {
     if (!isMountedRef.current) {
       return;
     }
 
-    if (null !== response) {
-      setResponse(null);
-    }
+    setIsLoading(true);
 
     const sanitizedAttributes = attributes && (0,external_wp_blocks_namespaceObject.__experimentalSanitizeBlockAttributes)(block, attributes); // If httpMethod is 'POST', send the attributes in the request body instead of the URL.
     // This allows sending a larger attributes object than in a GET request, where the attributes are in the URL.
@@ -189,6 +209,10 @@ function ServerSideRender(props) {
           errorMsg: error.message
         });
       }
+    }).finally(() => {
+      if (isMountedRef.current && fetchRequest === fetchRequestRef.current) {
+        setIsLoading(false);
+      }
     });
     return fetchRequest;
   }
@@ -208,12 +232,39 @@ function ServerSideRender(props) {
       debouncedFetchData();
     }
   });
+  /**
+   * Effect to handle showing the loading placeholder.
+   * Show it only if there is no previous response or
+   * the request takes more than one second.
+   */
 
-  if (response === '') {
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    if (!isLoading) {
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setShowLoader(true);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
+  const hasResponse = !!response;
+  const hasEmptyResponse = response === '';
+  const hasError = response === null || response === void 0 ? void 0 : response.error;
+
+  if (isLoading) {
+    return (0,external_wp_element_namespaceObject.createElement)(LoadingResponsePlaceholder, _extends({}, props, {
+      showLoader: showLoader
+    }), hasResponse && (0,external_wp_element_namespaceObject.createElement)(external_wp_element_namespaceObject.RawHTML, {
+      className: className
+    }, response));
+  }
+
+  if (hasEmptyResponse || !hasResponse) {
     return (0,external_wp_element_namespaceObject.createElement)(EmptyResponsePlaceholder, props);
-  } else if (!response) {
-    return (0,external_wp_element_namespaceObject.createElement)(LoadingResponsePlaceholder, props);
-  } else if (response.error) {
+  }
+
+  if (hasError) {
     return (0,external_wp_element_namespaceObject.createElement)(ErrorResponsePlaceholder, _extends({
       response: response
     }, props));
@@ -223,7 +274,7 @@ function ServerSideRender(props) {
     className: className
   }, response);
 }
-//# sourceMappingURL=server-side-render.js.map
+
 ;// CONCATENATED MODULE: ./packages/server-side-render/build-module/index.js
 
 
@@ -264,11 +315,12 @@ const ExportedServerSideRender = (0,external_wp_data_namespaceObject.withSelect)
   }
 
   return EMPTY_OBJECT;
-})(({
-  urlQueryArgs = EMPTY_OBJECT,
-  currentPostId,
-  ...props
-}) => {
+})(_ref => {
+  let {
+    urlQueryArgs = EMPTY_OBJECT,
+    currentPostId,
+    ...props
+  } = _ref;
   const newUrlQueryArgs = (0,external_wp_element_namespaceObject.useMemo)(() => {
     if (!currentPostId) {
       return urlQueryArgs;
@@ -287,6 +339,7 @@ const ExportedServerSideRender = (0,external_wp_data_namespaceObject.withSelect)
 if (window && window.wp && window.wp.components) {
   window.wp.components.ServerSideRender = (0,external_wp_element_namespaceObject.forwardRef)((props, ref) => {
     external_wp_deprecated_default()('wp.components.ServerSideRender', {
+      version: '6.2',
       since: '5.3',
       alternative: 'wp.serverSideRender'
     });
@@ -297,7 +350,7 @@ if (window && window.wp && window.wp.components) {
 }
 
 /* harmony default export */ var build_module = (ExportedServerSideRender);
-//# sourceMappingURL=index.js.map
-(window.wp = window.wp || {}).serverSideRender = __webpack_exports__.default;
+
+(window.wp = window.wp || {}).serverSideRender = __webpack_exports__["default"];
 /******/ })()
 ;

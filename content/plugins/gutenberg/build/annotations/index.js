@@ -73,7 +73,7 @@ var external_wp_i18n_namespaceObject = window["wp"]["i18n"];
  * @type {string}
  */
 const STORE_NAME = 'core/annotations';
-//# sourceMappingURL=constants.js.map
+
 ;// CONCATENATED MODULE: ./packages/annotations/build-module/format/annotation.js
 /**
  * WordPress dependencies
@@ -95,7 +95,8 @@ const ANNOTATION_ATTRIBUTE_PREFIX = 'annotation-text-';
  * @return {Object} A record with the annotations applied.
  */
 
-function applyAnnotations(record, annotations = []) {
+function applyAnnotations(record) {
+  let annotations = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   annotations.forEach(annotation => {
     let {
       start,
@@ -175,10 +176,11 @@ function retrieveAnnotationPositions(formats) {
  */
 
 
-function updateAnnotationsWithPositions(annotations, positions, {
-  removeAnnotation,
-  updateAnnotationRange
-}) {
+function updateAnnotationsWithPositions(annotations, positions, _ref) {
+  let {
+    removeAnnotation,
+    updateAnnotationRange
+  } = _ref;
   annotations.forEach(currentAnnotation => {
     const position = positions[currentAnnotation.id]; // If we cannot find an annotation, delete it.
 
@@ -214,18 +216,20 @@ const annotation = {
     return null;
   },
 
-  __experimentalGetPropsForEditableTreePreparation(select, {
-    richTextIdentifier,
-    blockClientId
-  }) {
+  __experimentalGetPropsForEditableTreePreparation(select, _ref2) {
+    let {
+      richTextIdentifier,
+      blockClientId
+    } = _ref2;
     return {
       annotations: select(STORE_NAME).__experimentalGetAnnotationsForRichText(blockClientId, richTextIdentifier)
     };
   },
 
-  __experimentalCreatePrepareEditableTree({
-    annotations
-  }) {
+  __experimentalCreatePrepareEditableTree(_ref3) {
+    let {
+      annotations
+    } = _ref3;
     return (formats, text) => {
       if (annotations.length === 0) {
         return formats;
@@ -263,7 +267,7 @@ const annotation = {
   }
 
 };
-//# sourceMappingURL=annotation.js.map
+
 ;// CONCATENATED MODULE: ./packages/annotations/build-module/format/index.js
 /**
  * WordPress dependencies
@@ -279,7 +283,7 @@ const {
   ...settings
 } = annotation;
 (0,external_wp_richText_namespaceObject.registerFormatType)(format_name, settings);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: external ["wp","hooks"]
 var external_wp_hooks_namespaceObject = window["wp"]["hooks"];
 ;// CONCATENATED MODULE: external ["wp","data"]
@@ -303,10 +307,12 @@ var external_wp_data_namespaceObject = window["wp"]["data"];
  */
 
 const addAnnotationClassName = OriginalComponent => {
-  return (0,external_wp_data_namespaceObject.withSelect)((select, {
-    clientId,
-    className
-  }) => {
+  return (0,external_wp_data_namespaceObject.withSelect)((select, _ref) => {
+    let {
+      clientId,
+      className
+    } = _ref;
+
     const annotations = select(STORE_NAME).__experimentalGetAnnotationsForBlock(clientId);
 
     return {
@@ -318,7 +324,7 @@ const addAnnotationClassName = OriginalComponent => {
 };
 
 (0,external_wp_hooks_namespaceObject.addFilter)('editor.BlockListBlock', 'core/annotations', addAnnotationClassName);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: external "lodash"
 var external_lodash_namespaceObject = window["lodash"];
 ;// CONCATENATED MODULE: ./packages/annotations/build-module/store/reducer.js
@@ -361,8 +367,11 @@ function isValidAnnotationRange(annotation) {
  */
 
 
-function annotations(state = {}, action) {
+function annotations() {
   var _state$blockClientId;
+
+  let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  let action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case 'ANNOTATION_ADD':
@@ -422,7 +431,7 @@ function annotations(state = {}, action) {
   return state;
 }
 /* harmony default export */ var reducer = (annotations);
-//# sourceMappingURL=reducer.js.map
+
 ;// CONCATENATED MODULE: ./node_modules/rememo/es/rememo.js
 
 
@@ -785,7 +794,7 @@ function __experimentalGetAnnotations(state) {
     return annotations;
   });
 }
-//# sourceMappingURL=selectors.js.map
+
 ;// CONCATENATED MODULE: ./node_modules/uuid/dist/esm-browser/rng.js
 // Unique ID creation requires a high quality random # generator. In the browser we therefore
 // require the crypto API and do not support built-in fallback to lower quality random number
@@ -900,14 +909,15 @@ function v4(options, buf, offset) {
  * @return {Object} Action object.
  */
 
-function __experimentalAddAnnotation({
-  blockClientId,
-  richTextIdentifier = null,
-  range = null,
-  selector = 'range',
-  source = 'default',
-  id = esm_browser_v4()
-}) {
+function __experimentalAddAnnotation(_ref) {
+  let {
+    blockClientId,
+    richTextIdentifier = null,
+    range = null,
+    selector = 'range',
+    source = 'default',
+    id = esm_browser_v4()
+  } = _ref;
   const action = {
     type: 'ANNOTATION_ADD',
     id,
@@ -969,7 +979,7 @@ function __experimentalRemoveAnnotationsBySource(source) {
     source
   };
 }
-//# sourceMappingURL=actions.js.map
+
 ;// CONCATENATED MODULE: ./packages/annotations/build-module/store/index.js
 /**
  * WordPress dependencies
@@ -1001,7 +1011,7 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
   actions: actions_namespaceObject
 });
 (0,external_wp_data_namespaceObject.register)(store);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/annotations/build-module/index.js
 /**
  * Internal dependencies
@@ -1009,7 +1019,7 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
 
 
 
-//# sourceMappingURL=index.js.map
+
 (window.wp = window.wp || {}).annotations = __webpack_exports__;
 /******/ })()
 ;

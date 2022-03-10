@@ -248,14 +248,15 @@ const getAttachmentsCollection = ids => {
 };
 
 class MediaUpload extends external_wp_element_namespaceObject.Component {
-  constructor({
-    allowedTypes,
-    gallery = false,
-    unstableFeaturedImageFlow = false,
-    modalClass,
-    multiple = false,
-    title = (0,external_wp_i18n_namespaceObject.__)('Select or Upload Media')
-  }) {
+  constructor(_ref) {
+    let {
+      allowedTypes,
+      gallery = false,
+      unstableFeaturedImageFlow = false,
+      modalClass,
+      multiple = false,
+      title = (0,external_wp_i18n_namespaceObject.__)('Select or Upload Media')
+    } = _ref;
     super(...arguments);
     this.openModal = this.openModal.bind(this);
     this.onOpen = this.onOpen.bind(this);
@@ -419,15 +420,25 @@ class MediaUpload extends external_wp_element_namespaceObject.Component {
       return;
     }
 
-    if (!this.props.gallery) {
-      const selection = this.frame.state().get('selection');
+    const isGallery = this.props.gallery;
+    const selection = this.frame.state().get('selection');
+
+    if (!isGallery) {
       (0,external_lodash_namespaceObject.castArray)(this.props.value).forEach(id => {
         selection.add(wp.media.attachment(id));
       });
-    } // load the images so they are available in the media modal.
+    } // Load the images so they are available in the media modal.
 
 
-    getAttachmentsCollection((0,external_lodash_namespaceObject.castArray)(this.props.value)).more();
+    const attachments = getAttachmentsCollection((0,external_lodash_namespaceObject.castArray)(this.props.value)); // Once attachments are loaded, set the current selection.
+
+    attachments.more().done(function () {
+      var _attachments$models;
+
+      if (isGallery && attachments !== null && attachments !== void 0 && (_attachments$models = attachments.models) !== null && _attachments$models !== void 0 && _attachments$models.length) {
+        selection.add(attachments.models);
+      }
+    });
   }
 
   onClose() {
@@ -471,10 +482,10 @@ class MediaUpload extends external_wp_element_namespaceObject.Component {
 }
 
 /* harmony default export */ var media_upload = (MediaUpload);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/media-utils/build-module/components/index.js
 
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: external ["wp","apiFetch"]
 var external_wp_apiFetch_namespaceObject = window["wp"]["apiFetch"];
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_namespaceObject);
@@ -535,15 +546,16 @@ function getMimeTypesArray(wpMimeTypesObject) {
  * @param {?Object}  $0.wpAllowedMimeTypes List of allowed mime types and file extensions.
  */
 
-async function uploadMedia({
-  allowedTypes,
-  additionalData = {},
-  filesList,
-  maxUploadFileSize,
-  onError = external_lodash_namespaceObject.noop,
-  onFileChange,
-  wpAllowedMimeTypes = null
-}) {
+async function uploadMedia(_ref) {
+  let {
+    allowedTypes,
+    additionalData = {},
+    filesList,
+    maxUploadFileSize,
+    onError = external_lodash_namespaceObject.noop,
+    onFileChange,
+    wpAllowedMimeTypes = null
+  } = _ref;
   // Cast filesList to array
   const files = [...filesList];
   const filesSet = [];
@@ -594,7 +606,7 @@ async function uploadMedia({
     if (allowedMimeTypesForUser && mediaFile.type && !isAllowedMimeTypeForUser(mediaFile.type)) {
       triggerError({
         code: 'MIME_TYPE_NOT_ALLOWED_FOR_USER',
-        message: (0,external_wp_i18n_namespaceObject.__)('Sorry, this file type is not permitted for security reasons.'),
+        message: (0,external_wp_i18n_namespaceObject.__)('Sorry, you are not allowed to upload this file type.'),
         file: mediaFile
       });
       continue;
@@ -690,14 +702,14 @@ function createMediaFromFile(file, additionalData) {
     method: 'POST'
   });
 }
-//# sourceMappingURL=upload-media.js.map
+
 ;// CONCATENATED MODULE: ./packages/media-utils/build-module/utils/index.js
 
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/media-utils/build-module/index.js
 
 
-//# sourceMappingURL=index.js.map
+
 (window.wp = window.wp || {}).mediaUtils = __webpack_exports__;
 /******/ })()
 ;

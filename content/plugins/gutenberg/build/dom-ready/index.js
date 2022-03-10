@@ -64,13 +64,13 @@ function domReady(callback) {
   if (document.readyState === 'complete' || // DOMContentLoaded + Images/Styles/etc loaded, so we call directly.
   document.readyState === 'interactive' // DOMContentLoaded fires at this point, so we call directly.
   ) {
-      return void callback();
-    } // DOMContentLoaded has not fired yet, delay callback until then.
+    return void callback();
+  } // DOMContentLoaded has not fired yet, delay callback until then.
 
 
   document.addEventListener('DOMContentLoaded', callback);
 }
-//# sourceMappingURL=index.js.map
-(window.wp = window.wp || {}).domReady = __webpack_exports__.default;
+
+(window.wp = window.wp || {}).domReady = __webpack_exports__["default"];
 /******/ })()
 ;

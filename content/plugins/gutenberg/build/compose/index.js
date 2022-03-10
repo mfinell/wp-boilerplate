@@ -1,7 +1,7 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 2152:
+/***/ 8294:
 /***/ (function(module) {
 
 /*!
@@ -956,7 +956,7 @@ module.exports.TinyEmitter = E;
 
 /***/ }),
 
-/***/ 2441:
+/***/ 7973:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
@@ -2022,7 +2022,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
 
 /***/ }),
 
-/***/ 3956:
+/***/ 5538:
 /***/ (function() {
 
 /**
@@ -2075,16 +2075,15 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*global define:false */
 
 /***/ }),
 
-/***/ 5464:
+/***/ 235:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
-var e=__webpack_require__(3804),n={display:"block",opacity:0,position:"absolute",top:0,left:0,height:"100%",width:"100%",overflow:"hidden",pointerEvents:"none",zIndex:-1},t=function(t){var r=t.onResize,u=e.useRef();return function(n,t){var r=function(){return n.current&&n.current.contentDocument&&n.current.contentDocument.defaultView};function u(){t();var e=r();e&&e.addEventListener("resize",t)}e.useEffect((function(){return r()?u():n.current&&n.current.addEventListener&&n.current.addEventListener("load",u),function(){var e=r();e&&"function"==typeof e.removeEventListener&&e.removeEventListener("resize",t)}}),[])}(u,(function(){return r(u)})),e.createElement("iframe",{style:n,src:"about:blank",ref:u,"aria-hidden":!0,tabIndex:-1,frameBorder:0})},r=function(e){return{width:null!=e?e.offsetWidth:null,height:null!=e?e.offsetHeight:null}};module.exports=function(n){void 0===n&&(n=r);var u=e.useState(n(null)),o=u[0],i=u[1],c=e.useCallback((function(e){return i(n(e.current))}),[n]);return[e.useMemo((function(){return e.createElement(t,{onResize:c})}),[c]),o]};
-//# sourceMappingURL=index.js.map
+var e=__webpack_require__(9196),n={display:"block",opacity:0,position:"absolute",top:0,left:0,height:"100%",width:"100%",overflow:"hidden",pointerEvents:"none",zIndex:-1},t=function(t){var r=t.onResize,u=e.useRef();return function(n,t){var r=function(){return n.current&&n.current.contentDocument&&n.current.contentDocument.defaultView};function u(){t();var e=r();e&&e.addEventListener("resize",t)}e.useEffect((function(){return r()?u():n.current&&n.current.addEventListener&&n.current.addEventListener("load",u),function(){var e=r();e&&"function"==typeof e.removeEventListener&&e.removeEventListener("resize",t)}}),[])}(u,(function(){return r(u)})),e.createElement("iframe",{style:n,src:"about:blank",ref:u,"aria-hidden":!0,tabIndex:-1,frameBorder:0})},r=function(e){return{width:null!=e?e.offsetWidth:null,height:null!=e?e.offsetHeight:null}};module.exports=function(n){void 0===n&&(n=r);var u=e.useState(n(null)),o=u[0],i=u[1],c=e.useCallback((function(e){return i(n(e.current))}),[n]);return[e.useMemo((function(){return e.createElement(t,{onResize:c})}),[c]),o]};
 
 
 /***/ }),
 
-/***/ 3804:
+/***/ 9196:
 /***/ (function(module) {
 
 "use strict";
@@ -2170,8 +2169,10 @@ __webpack_require__.r(__webpack_exports__);
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
   "__experimentalUseDialog": function() { return /* reexport */ use_dialog; },
+  "__experimentalUseDisabled": function() { return /* reexport */ useDisabled; },
   "__experimentalUseDragging": function() { return /* reexport */ useDragging; },
   "__experimentalUseDropZone": function() { return /* reexport */ useDropZone; },
+  "__experimentalUseFixedWindowList": function() { return /* reexport */ useFixedWindowList; },
   "__experimentalUseFocusOutside": function() { return /* reexport */ useFocusOutside; },
   "compose": function() { return /* reexport */ compose; },
   "createHigherOrderComponent": function() { return /* reexport */ create_higher_order_component; },
@@ -2184,6 +2185,7 @@ __webpack_require__.d(__webpack_exports__, {
   "useDebounce": function() { return /* reexport */ useDebounce; },
   "useFocusOnMount": function() { return /* reexport */ useFocusOnMount; },
   "useFocusReturn": function() { return /* reexport */ use_focus_return; },
+  "useFocusableIframe": function() { return /* reexport */ useFocusableIframe; },
   "useInstanceId": function() { return /* reexport */ useInstanceId; },
   "useIsomorphicLayoutEffect": function() { return /* reexport */ use_isomorphic_layout_effect; },
   "useKeyboardShortcut": function() { return /* reexport */ use_keyboard_shortcut; },
@@ -2208,14 +2210,14 @@ var external_lodash_namespaceObject = window["lodash"];
 /**
  * External dependencies
  */
- // eslint-disable-next-line no-restricted-imports
+
 
 /**
  * Given a function mapping a component to an enhanced component and modifier
  * name, returns the enhanced component augmented with a generated displayName.
  *
- * @param  mapComponentToEnhancedComponent Function mapping component to enhanced component.
- * @param  modifierName                    Seed name from which to generated display name.
+ * @param mapComponent Function mapping component to enhanced component.
+ * @param modifierName Seed name from which to generated display name.
  *
  * @return Component class with generated display name assigned.
  */
@@ -2229,7 +2231,7 @@ function createHigherOrderComponent(mapComponent, modifierName) {
 }
 
 /* harmony default export */ var create_higher_order_component = (createHigherOrderComponent);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/compose.js
 /**
  * External dependencies
@@ -2245,7 +2247,7 @@ function createHigherOrderComponent(mapComponent, modifierName) {
  */
 
 /* harmony default export */ var compose = (external_lodash_namespaceObject.flowRight);
-//# sourceMappingURL=compose.js.map
+
 ;// CONCATENATED MODULE: external ["wp","element"]
 var external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/if-condition/index.js
@@ -2254,7 +2256,6 @@ var external_wp_element_namespaceObject = window["wp"]["element"];
 /**
  * Internal dependencies
  */
-
 
 /**
  * Higher-order component creator, creating a new component which renders if
@@ -2273,6 +2274,7 @@ var external_wp_element_namespaceObject = window["wp"]["element"];
  *
  * @return Higher-order component.
  */
+
 const ifCondition = predicate => create_higher_order_component(WrappedComponent => props => {
   if (!predicate(props)) {
     return null;
@@ -2282,7 +2284,7 @@ const ifCondition = predicate => create_higher_order_component(WrappedComponent 
 }, 'ifCondition');
 
 /* harmony default export */ var if_condition = (ifCondition);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: external ["wp","isShallowEqual"]
 var external_wp_isShallowEqual_namespaceObject = window["wp"]["isShallowEqual"];
 var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(external_wp_isShallowEqual_namespaceObject);
@@ -2299,10 +2301,13 @@ var external_wp_isShallowEqual_default = /*#__PURE__*/__webpack_require__.n(exte
  */
 
 
+/**
+ * External dependencies
+ */
 
 /**
  * Given a component returns the enhanced component augmented with a component
- * only rerendering when its props/state change
+ * only re-rendering when its props/state change
  */
 const pure = create_higher_order_component(Wrapped => {
   if (Wrapped.prototype instanceof external_wp_element_namespaceObject.Component) {
@@ -2326,7 +2331,7 @@ const pure = create_higher_order_component(Wrapped => {
   };
 }, 'pure');
 /* harmony default export */ var higher_order_pure = (pure);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
 function _extends() {
   _extends = Object.assign || function (target) {
@@ -2405,7 +2410,7 @@ class Listener {
 }
 
 /* harmony default export */ var listener = (Listener);
-//# sourceMappingURL=listener.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/with-global-events/index.js
 
 
@@ -2457,7 +2462,8 @@ function withGlobalEvents(eventTypesToHandlers) {
   external_wp_deprecated_default()('wp.compose.withGlobalEvents', {
     since: '5.7',
     alternative: 'useEffect'
-  });
+  }); // @ts-ignore We don't need to fix the type-related issues because this is deprecated.
+
   return create_higher_order_component(WrappedComponent => {
     class Wrapper extends external_wp_element_namespaceObject.Component {
       constructor(
@@ -2485,7 +2491,9 @@ function withGlobalEvents(eventTypesToHandlers) {
       event) {
         const handler = eventTypesToHandlers[
         /** @type {keyof GlobalEventHandlersEventMap} */
-        event.type];
+        event.type
+        /* eslint-enable jsdoc/no-undefined-types */
+        ];
 
         if (typeof this.wrappedRef[handler] === 'function') {
           this.wrappedRef[handler](event);
@@ -2520,7 +2528,7 @@ function withGlobalEvents(eventTypesToHandlers) {
     });
   }, 'withGlobalEvents');
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-instance-id/index.js
 // Disable reason: Object and object are distinctly different types in TypeScript and we mean the lowercase object in thise case
 // but eslint wants to force us to use `Object`. See https://stackoverflow.com/questions/49464634/difference-between-object-and-object-in-typescript
@@ -2558,7 +2566,8 @@ function createId(object) {
  */
 
 
-function useInstanceId(object, prefix, preferredId = '') {
+function useInstanceId(object, prefix) {
+  let preferredId = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
   return (0,external_wp_element_namespaceObject.useMemo)(() => {
     if (preferredId) return preferredId;
     const id = createId(object);
@@ -2566,15 +2575,10 @@ function useInstanceId(object, prefix, preferredId = '') {
   }, [object]);
 }
 /* eslint-enable jsdoc/check-types */
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/with-instance-id/index.js
 
 
-
-/**
- * External dependencies
- */
-// eslint-disable-next-line no-restricted-imports
 
 /**
  * Internal dependencies
@@ -2588,21 +2592,22 @@ function useInstanceId(object, prefix, preferredId = '') {
 
 const withInstanceId = create_higher_order_component(WrappedComponent => {
   return props => {
-    const instanceId = useInstanceId(WrappedComponent);
+    const instanceId = useInstanceId(WrappedComponent); // @ts-ignore
+
     return (0,external_wp_element_namespaceObject.createElement)(WrappedComponent, _extends({}, props, {
       instanceId: instanceId
     }));
   };
 }, 'withInstanceId');
 /* harmony default export */ var with_instance_id = (withInstanceId);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/with-safe-timeout/index.js
 
 
 /**
  * External dependencies
  */
- // eslint-disable-next-line no-restricted-imports
+
 
 /**
  * WordPress dependencies
@@ -2613,6 +2618,14 @@ const withInstanceId = create_higher_order_component(WrappedComponent => {
  */
 
 
+/**
+ * We cannot use the `Window['setTimeout']` and `Window['clearTimeout']`
+ * types here because those functions include functionality that is not handled
+ * by this component, like the ability to pass extra arguments.
+ *
+ * In the case of this component, we only handle the simplest case where
+ * `setTimeout` only accepts a function (not a string) and an optional delay.
+ */
 
 /**
  * A higher-order component used to provide and manage delayed function calls
@@ -2656,7 +2669,7 @@ const withSafeTimeout = create_higher_order_component(OriginalComponent => {
   };
 }, 'withSafeTimeout');
 /* harmony default export */ var with_safe_timeout = (withSafeTimeout);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/higher-order/with-state/index.js
 
 
@@ -2682,8 +2695,10 @@ const withSafeTimeout = create_higher_order_component(OriginalComponent => {
  * @return {any} A higher order component wrapper accepting a component that takes the state props + its own props + `setState` and returning a component that only accepts the own props.
  */
 
-function withState(initialState = {}) {
+function withState() {
+  let initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   external_wp_deprecated_default()('wp.compose.withState', {
+    since: '5.8',
     alternative: 'wp.element.useState'
   });
   return create_higher_order_component(OriginalComponent => {
@@ -2705,186 +2720,15 @@ function withState(initialState = {}) {
     };
   }, 'withState');
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: external ["wp","keycodes"]
 var external_wp_keycodes_namespaceObject = window["wp"]["keycodes"];
 ;// CONCATENATED MODULE: external ["wp","dom"]
 var external_wp_dom_namespaceObject = window["wp"]["dom"];
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-constrained-tabbing/index.js
-/**
- * WordPress dependencies
- */
-
-
-
-/**
- * In Dialogs/modals, the tabbing must be constrained to the content of
- * the wrapper element. This hook adds the behavior to the returned ref.
- *
- * @return {import('react').RefCallback<Element>} Element Ref.
- *
- * @example
- * ```js
- * import { useConstrainedTabbing } from '@wordpress/compose';
- *
- * const ConstrainedTabbingExample = () => {
- *     const constrainedTabbingRef = useConstrainedTabbing()
- *     return (
- *         <div ref={ constrainedTabbingRef }>
- *             <Button />
- *             <Button />
- *         </div>
- *     );
- * }
- * ```
- */
-
-function useConstrainedTabbing() {
-  const ref = (0,external_wp_element_namespaceObject.useCallback)(
-  /** @type {Element} */
-  node => {
-    if (!node) {
-      return;
-    }
-
-    node.addEventListener('keydown',
-    /** @type {Event} */
-    event => {
-      if (!(event instanceof window.KeyboardEvent)) {
-        return;
-      }
-
-      if (event.keyCode !== external_wp_keycodes_namespaceObject.TAB) {
-        return;
-      }
-
-      const tabbables = external_wp_dom_namespaceObject.focus.tabbable.find(node);
-
-      if (!tabbables.length) {
-        return;
-      }
-
-      const firstTabbable = tabbables[0];
-      const lastTabbable = tabbables[tabbables.length - 1];
-
-      if (event.shiftKey && event.target === firstTabbable) {
-        event.preventDefault();
-        /** @type {HTMLElement} */
-
-        lastTabbable.focus();
-      } else if (!event.shiftKey && event.target === lastTabbable) {
-        event.preventDefault();
-        /** @type {HTMLElement} */
-
-        firstTabbable.focus();
-        /*
-         * When pressing Tab and none of the tabbables has focus, the keydown
-         * event happens on the wrapper div: move focus on the first tabbable.
-         */
-      } else if (!tabbables.includes(
-      /** @type {Element} */
-      event.target)) {
-        event.preventDefault();
-        /** @type {HTMLElement} */
-
-        firstTabbable.focus();
-      }
-    });
-  }, []);
-  return ref;
-}
-
-/* harmony default export */ var use_constrained_tabbing = (useConstrainedTabbing);
-//# sourceMappingURL=index.js.map
-// EXTERNAL MODULE: ./node_modules/clipboard/dist/clipboard.js
-var dist_clipboard = __webpack_require__(2152);
-var clipboard_default = /*#__PURE__*/__webpack_require__.n(dist_clipboard);
-;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-copy-on-click/index.js
-/**
- * External dependencies
- */
-
-/**
- * WordPress dependencies
- */
-
-
-
-/* eslint-disable jsdoc/no-undefined-types */
-
-/**
- * Copies the text to the clipboard when the element is clicked.
- *
- * @deprecated
- *
- * @param {import('react').RefObject<string | Element | NodeListOf<Element>>} ref       Reference with the element.
- * @param {string|Function}                                                   text      The text to copy.
- * @param {number}                                                            [timeout] Optional timeout to reset the returned
- *                                                                                      state. 4 seconds by default.
- *
- * @return {boolean} Whether or not the text has been copied. Resets after the
- *                   timeout.
- */
-
-function useCopyOnClick(ref, text, timeout = 4000) {
-  /* eslint-enable jsdoc/no-undefined-types */
-  external_wp_deprecated_default()('wp.compose.useCopyOnClick', {
-    since: '10.3',
-    plugin: 'Gutenberg',
-    alternative: 'wp.compose.useCopyToClipboard'
-  });
-  /** @type {import('react').MutableRefObject<Clipboard | undefined>} */
-
-  const clipboard = (0,external_wp_element_namespaceObject.useRef)();
-  const [hasCopied, setHasCopied] = (0,external_wp_element_namespaceObject.useState)(false);
-  (0,external_wp_element_namespaceObject.useEffect)(() => {
-    /** @type {number | undefined} */
-    let timeoutId;
-
-    if (!ref.current) {
-      return;
-    } // Clipboard listens to click events.
-
-
-    clipboard.current = new (clipboard_default())(ref.current, {
-      text: () => typeof text === 'function' ? text() : text
-    });
-    clipboard.current.on('success', ({
-      clearSelection,
-      trigger
-    }) => {
-      // Clearing selection will move focus back to the triggering button,
-      // ensuring that it is not reset to the body, and further that it is
-      // kept within the rendered node.
-      clearSelection(); // Handle ClipboardJS focus bug, see https://github.com/zenorocha/clipboard.js/issues/680
-
-      if (trigger) {
-        /** @type {HTMLElement} */
-        trigger.focus();
-      }
-
-      if (timeout) {
-        setHasCopied(true);
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => setHasCopied(false), timeout);
-      }
-    });
-    return () => {
-      if (clipboard.current) {
-        clipboard.current.destroy();
-      }
-
-      clearTimeout(timeoutId);
-    };
-  }, [text, timeout, setHasCopied]);
-  return hasCopied;
-}
-//# sourceMappingURL=index.js.map
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-ref-effect/index.js
 /**
  * External dependencies
  */
-// eslint-disable-next-line no-restricted-imports
 
 /**
  * WordPress dependencies
@@ -2920,7 +2764,180 @@ function useRefEffect(callback, dependencies) {
     }
   }, dependencies);
 }
-//# sourceMappingURL=index.js.map
+
+;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-constrained-tabbing/index.js
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * In Dialogs/modals, the tabbing must be constrained to the content of
+ * the wrapper element. This hook adds the behavior to the returned ref.
+ *
+ * @return {import('react').RefCallback<Element>} Element Ref.
+ *
+ * @example
+ * ```js
+ * import { useConstrainedTabbing } from '@wordpress/compose';
+ *
+ * const ConstrainedTabbingExample = () => {
+ *     const constrainedTabbingRef = useConstrainedTabbing()
+ *     return (
+ *         <div ref={ constrainedTabbingRef }>
+ *             <Button />
+ *             <Button />
+ *         </div>
+ *     );
+ * }
+ * ```
+ */
+
+function useConstrainedTabbing() {
+  return useRefEffect((
+  /** @type {HTMLElement} */
+  node) => {
+    /** @type {number|undefined} */
+    let timeoutId;
+
+    function onKeyDown(
+    /** @type {KeyboardEvent} */
+    event) {
+      const {
+        keyCode,
+        shiftKey,
+        target
+      } = event;
+
+      if (keyCode !== external_wp_keycodes_namespaceObject.TAB) {
+        return;
+      }
+
+      const action = shiftKey ? 'findPrevious' : 'findNext';
+      const nextElement = external_wp_dom_namespaceObject.focus.tabbable[action](
+      /** @type {HTMLElement} */
+      target) || null; // If the element that is about to receive focus is outside the
+      // area, move focus to a div and insert it at the start or end of
+      // the area, depending on the direction. Without preventing default
+      // behaviour, the browser will then move focus to the next element.
+
+      if (node.contains(nextElement)) {
+        return;
+      }
+
+      const domAction = shiftKey ? 'append' : 'prepend';
+      const {
+        ownerDocument
+      } = node;
+      const trap = ownerDocument.createElement('div');
+      trap.tabIndex = -1;
+      node[domAction](trap);
+      trap.focus(); // Remove after the browser moves focus to the next element.
+
+      timeoutId = setTimeout(() => node.removeChild(trap));
+    }
+
+    node.addEventListener('keydown', onKeyDown);
+    return () => {
+      node.removeEventListener('keydown', onKeyDown);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+}
+
+/* harmony default export */ var use_constrained_tabbing = (useConstrainedTabbing);
+
+// EXTERNAL MODULE: ./node_modules/clipboard/dist/clipboard.js
+var dist_clipboard = __webpack_require__(8294);
+var clipboard_default = /*#__PURE__*/__webpack_require__.n(dist_clipboard);
+;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-copy-on-click/index.js
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+/* eslint-disable jsdoc/no-undefined-types */
+
+/**
+ * Copies the text to the clipboard when the element is clicked.
+ *
+ * @deprecated
+ *
+ * @param {import('react').RefObject<string | Element | NodeListOf<Element>>} ref       Reference with the element.
+ * @param {string|Function}                                                   text      The text to copy.
+ * @param {number}                                                            [timeout] Optional timeout to reset the returned
+ *                                                                                      state. 4 seconds by default.
+ *
+ * @return {boolean} Whether or not the text has been copied. Resets after the
+ *                   timeout.
+ */
+
+function useCopyOnClick(ref, text) {
+  let timeout = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 4000;
+
+  /* eslint-enable jsdoc/no-undefined-types */
+  external_wp_deprecated_default()('wp.compose.useCopyOnClick', {
+    since: '5.8',
+    alternative: 'wp.compose.useCopyToClipboard'
+  });
+  /** @type {import('react').MutableRefObject<Clipboard | undefined>} */
+
+  const clipboard = (0,external_wp_element_namespaceObject.useRef)();
+  const [hasCopied, setHasCopied] = (0,external_wp_element_namespaceObject.useState)(false);
+  (0,external_wp_element_namespaceObject.useEffect)(() => {
+    /** @type {number | undefined} */
+    let timeoutId;
+
+    if (!ref.current) {
+      return;
+    } // Clipboard listens to click events.
+
+
+    clipboard.current = new (clipboard_default())(ref.current, {
+      text: () => typeof text === 'function' ? text() : text
+    });
+    clipboard.current.on('success', _ref => {
+      let {
+        clearSelection,
+        trigger
+      } = _ref;
+      // Clearing selection will move focus back to the triggering button,
+      // ensuring that it is not reset to the body, and further that it is
+      // kept within the rendered node.
+      clearSelection(); // Handle ClipboardJS focus bug, see https://github.com/zenorocha/clipboard.js/issues/680
+
+      if (trigger) {
+        /** @type {HTMLElement} */
+        trigger.focus();
+      }
+
+      if (timeout) {
+        setHasCopied(true);
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => setHasCopied(false), timeout);
+      }
+    });
+    return () => {
+      if (clipboard.current) {
+        clipboard.current.destroy();
+      }
+
+      clearTimeout(timeoutId);
+    };
+  }, [text, timeout, setHasCopied]);
+  return hasCopied;
+}
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-copy-to-clipboard/index.js
 /**
  * External dependencies
@@ -2972,9 +2989,10 @@ function useCopyToClipboard(text, onSuccess) {
       }
 
     });
-    clipboard.on('success', ({
-      clearSelection
-    }) => {
+    clipboard.on('success', _ref => {
+      let {
+        clearSelection
+      } = _ref;
       // Clearing selection will move focus back to the triggering
       // button, ensuring that it is not reset to the body, and
       // further that it is kept within the rendered node.
@@ -2992,7 +3010,7 @@ function useCopyToClipboard(text, onSuccess) {
     };
   }, []);
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-focus-on-mount/index.js
 /**
  * WordPress dependencies
@@ -3021,7 +3039,8 @@ function useCopyToClipboard(text, onSuccess) {
  * ```
  */
 
-function useFocusOnMount(focusOnMount = 'firstElement') {
+function useFocusOnMount() {
+  let focusOnMount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'firstElement';
   const focusOnMountRef = (0,external_wp_element_namespaceObject.useRef)(focusOnMount);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     focusOnMountRef.current = focusOnMount;
@@ -3052,7 +3071,7 @@ function useFocusOnMount(focusOnMount = 'firstElement') {
     target.focus();
   }, []);
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-focus-return/index.js
 /**
  * WordPress dependencies
@@ -3129,7 +3148,7 @@ function useFocusReturn(onFocusReturn) {
 }
 
 /* harmony default export */ var use_focus_return = (useFocusReturn);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-focus-outside/index.js
 /**
  * External dependencies
@@ -3323,7 +3342,7 @@ function useFocusOutside(onFocusOutside) {
     onBlur: queueBlurCheck
   };
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-merge-refs/index.js
 /**
  * WordPress dependencies
@@ -3452,7 +3471,7 @@ function useMergeRefs(refs) {
     }
   }, []);
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-dialog/index.js
 /**
  * WordPress dependencies
@@ -3517,9 +3536,9 @@ function useDialog(options) {
       return;
     }
 
-    node.addEventListener('keydown',
+    node.addEventListener('keydown', (
     /** @type {KeyboardEvent} */
-    event => {
+    event) => {
       var _currentOptions$curre3;
 
       // Close on escape
@@ -3535,7 +3554,112 @@ function useDialog(options) {
 }
 
 /* harmony default export */ var use_dialog = (useDialog);
-//# sourceMappingURL=index.js.map
+
+;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-disabled/index.js
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+/**
+ * Names of control nodes which qualify for disabled behavior.
+ *
+ * See WHATWG HTML Standard: 4.10.18.5: "Enabling and disabling form controls: the disabled attribute".
+ *
+ * @see https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#enabling-and-disabling-form-controls:-the-disabled-attribute
+ *
+ * @type {string[]}
+ */
+
+const DISABLED_ELIGIBLE_NODE_NAMES = ['BUTTON', 'FIELDSET', 'INPUT', 'OPTGROUP', 'OPTION', 'SELECT', 'TEXTAREA'];
+/**
+ * In some circumstances, such as block previews, all focusable DOM elements
+ * (input fields, links, buttons, etc.) need to be disabled. This hook adds the
+ * behavior to disable nested DOM elements to the returned ref.
+ *
+ * @return {import('react').RefObject<HTMLElement>} Element Ref.
+ *
+ * @example
+ * ```js
+ * import { __experimentalUseDisabled as useDisabled } from '@wordpress/compose';
+ * const DisabledExample = () => {
+ * 	const disabledRef = useDisabled();
+ *	return (
+ *		<div ref={ disabledRef }>
+ *			<a href="#">This link will have tabindex set to -1</a>
+ *			<input placeholder="This input will have the disabled attribute added to it." type="text" />
+ *		</div>
+ *	);
+ * };
+ * ```
+ */
+
+function useDisabled() {
+  /** @type {import('react').RefObject<HTMLElement>} */
+  const node = (0,external_wp_element_namespaceObject.useRef)(null);
+
+  const disable = () => {
+    if (!node.current) {
+      return;
+    }
+
+    external_wp_dom_namespaceObject.focus.focusable.find(node.current).forEach(focusable => {
+      if ((0,external_lodash_namespaceObject.includes)(DISABLED_ELIGIBLE_NODE_NAMES, focusable.nodeName)) {
+        focusable.setAttribute('disabled', '');
+      }
+
+      if (focusable.nodeName === 'A') {
+        focusable.setAttribute('tabindex', '-1');
+      }
+
+      const tabIndex = focusable.getAttribute('tabindex');
+
+      if (tabIndex !== null && tabIndex !== '-1') {
+        focusable.removeAttribute('tabindex');
+      }
+
+      if (focusable.hasAttribute('contenteditable')) {
+        focusable.setAttribute('contenteditable', 'false');
+      }
+    });
+  }; // Debounce re-disable since disabling process itself will incur
+  // additional mutations which should be ignored.
+
+
+  const debouncedDisable = (0,external_wp_element_namespaceObject.useCallback)((0,external_lodash_namespaceObject.debounce)(disable, undefined, {
+    leading: true
+  }), []);
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    disable();
+    /** @type {MutationObserver | undefined} */
+
+    let observer;
+
+    if (node.current) {
+      observer = new window.MutationObserver(debouncedDisable);
+      observer.observe(node.current, {
+        childList: true,
+        attributes: true,
+        subtree: true
+      });
+    }
+
+    return () => {
+      if (observer) {
+        observer.disconnect();
+      }
+
+      debouncedDisable.cancel();
+    };
+  }, []);
+  return node;
+}
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-isomorphic-layout-effect/index.js
 /**
  * WordPress dependencies
@@ -3549,7 +3673,7 @@ function useDialog(options) {
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? external_wp_element_namespaceObject.useLayoutEffect : external_wp_element_namespaceObject.useEffect;
 /* harmony default export */ var use_isomorphic_layout_effect = (useIsomorphicLayoutEffect);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-dragging/index.js
 /**
  * WordPress dependencies
@@ -3567,11 +3691,12 @@ const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? external_wp_el
  * @param {(e: MouseEvent) => void} props.onDragEnd
  */
 
-function useDragging({
-  onDragStart,
-  onDragMove,
-  onDragEnd
-}) {
+function useDragging(_ref) {
+  let {
+    onDragStart,
+    onDragMove,
+    onDragEnd
+  } = _ref;
   const [isDragging, setIsDragging] = (0,external_wp_element_namespaceObject.useState)(false);
   const eventsRef = (0,external_wp_element_namespaceObject.useRef)({
     onDragStart,
@@ -3583,12 +3708,12 @@ function useDragging({
     eventsRef.current.onDragMove = onDragMove;
     eventsRef.current.onDragEnd = onDragEnd;
   }, [onDragStart, onDragMove, onDragEnd]);
-  const onMouseMove = (0,external_wp_element_namespaceObject.useCallback)(
+  const onMouseMove = (0,external_wp_element_namespaceObject.useCallback)((
   /** @type {MouseEvent} */
-  event => eventsRef.current.onDragMove && eventsRef.current.onDragMove(event), []);
-  const endDrag = (0,external_wp_element_namespaceObject.useCallback)(
+  event) => eventsRef.current.onDragMove && eventsRef.current.onDragMove(event), []);
+  const endDrag = (0,external_wp_element_namespaceObject.useCallback)((
   /** @type {MouseEvent} */
-  event => {
+  event) => {
     if (eventsRef.current.onDragEnd) {
       eventsRef.current.onDragEnd(event);
     }
@@ -3597,9 +3722,9 @@ function useDragging({
     document.removeEventListener('mouseup', endDrag);
     setIsDragging(false);
   }, []);
-  const startDrag = (0,external_wp_element_namespaceObject.useCallback)(
+  const startDrag = (0,external_wp_element_namespaceObject.useCallback)((
   /** @type {MouseEvent} */
-  event => {
+  event) => {
     if (eventsRef.current.onDragStart) {
       eventsRef.current.onDragStart(event);
     }
@@ -3623,12 +3748,12 @@ function useDragging({
     isDragging
   };
 }
-//# sourceMappingURL=index.js.map
+
 // EXTERNAL MODULE: ./node_modules/mousetrap/mousetrap.js
-var mousetrap_mousetrap = __webpack_require__(2441);
+var mousetrap_mousetrap = __webpack_require__(7973);
 var mousetrap_default = /*#__PURE__*/__webpack_require__.n(mousetrap_mousetrap);
 // EXTERNAL MODULE: ./node_modules/mousetrap/plugins/global-bind/mousetrap-global-bind.js
-var mousetrap_global_bind = __webpack_require__(3956);
+var mousetrap_global_bind = __webpack_require__(5538);
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-keyboard-shortcut/index.js
 /**
  * External dependencies
@@ -3660,7 +3785,9 @@ var mousetrap_global_bind = __webpack_require__(3956);
  * @return {boolean} True if MacOS; false otherwise.
  */
 
-function isAppleOS(_window = window) {
+function isAppleOS() {
+  let _window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+
   const {
     platform
   } = _window.navigator;
@@ -3681,13 +3808,14 @@ function isAppleOS(_window = window) {
 
 function useKeyboardShortcut(
 /* eslint-enable jsdoc/valid-types */
-shortcuts, callback, {
-  bindGlobal = false,
-  eventName = 'keydown',
-  isDisabled = false,
-  // This is important for performance considerations.
-  target
-} = {}) {
+shortcuts, callback) {
+  let {
+    bindGlobal = false,
+    eventName = 'keydown',
+    isDisabled = false,
+    // This is important for performance considerations.
+    target
+  } = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   const currentCallback = (0,external_wp_element_namespaceObject.useRef)(callback);
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     currentCallback.current = callback;
@@ -3720,13 +3848,12 @@ shortcuts, callback, {
 
       const bindFn = bindGlobal ? 'bindGlobal' : 'bind'; // @ts-ignore `bindGlobal` is an undocumented property
 
-      mousetrap[bindFn](shortcut, (
-      /* eslint-disable jsdoc/valid-types */
-
-      /** @type {[e: import('mousetrap').ExtendedKeyboardEvent, combo: string]} */
-      ...args) =>
-      /* eslint-enable jsdoc/valid-types */
-      currentCallback.current(...args), eventName);
+      mousetrap[bindFn](shortcut, function () {
+        return (
+          /* eslint-enable jsdoc/valid-types */
+          currentCallback.current(...arguments)
+        );
+      }, eventName);
     });
     return () => {
       mousetrap.reset();
@@ -3735,7 +3862,7 @@ shortcuts, callback, {
 }
 
 /* harmony default export */ var use_keyboard_shortcut = (useKeyboardShortcut);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-media-query/index.js
 /**
  * WordPress dependencies
@@ -3766,7 +3893,7 @@ function useMediaQuery(query) {
   }, [query]);
   return !!query && match;
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-previous/index.js
 /**
  * WordPress dependencies
@@ -3776,24 +3903,13 @@ function useMediaQuery(query) {
  * Use something's value from the previous render.
  * Based on https://usehooks.com/usePrevious/.
  *
- * @template T
+ * @param  value The value to track.
  *
- * @param {T} value The value to track.
- *
- * @return {T | undefined} The value from the previous render.
+ * @return The value from the previous render.
  */
 
 function usePrevious(value) {
-  // Disable reason: without an explicit type detail, the type of ref will be
-  // inferred based on the initial useRef argument, which is undefined.
-  // https://github.com/WordPress/gutenberg/pull/22597#issuecomment-633588366
-
-  /* eslint-disable jsdoc/no-undefined-types */
-  const ref = (0,external_wp_element_namespaceObject.useRef)(
-  /** @type {T | undefined} */
-  undefined);
-  /* eslint-enable jsdoc/no-undefined-types */
-  // Store current value in ref.
+  const ref = (0,external_wp_element_namespaceObject.useRef)(); // Store current value in ref.
 
   (0,external_wp_element_namespaceObject.useEffect)(() => {
     ref.current = value;
@@ -3802,7 +3918,7 @@ function usePrevious(value) {
 
   return ref.current;
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-reduced-motion/index.js
 /**
  * Internal dependencies
@@ -3817,7 +3933,7 @@ function usePrevious(value) {
 const useReducedMotion = () => useMediaQuery('(prefers-reduced-motion: reduce)');
 
 /* harmony default export */ var use_reduced_motion = (useReducedMotion);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-viewport-match/index.js
 /**
  * WordPress dependencies
@@ -3891,7 +4007,8 @@ null);
  * @return {boolean} Whether viewport matches query.
  */
 
-const useViewportMatch = (breakpoint, operator = '>=') => {
+const useViewportMatch = function (breakpoint) {
+  let operator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '>=';
   const simulatedWidth = (0,external_wp_element_namespaceObject.useContext)(ViewportMatchWidthContext);
   const mediaQuery = !simulatedWidth && `(${CONDITIONS[operator]}: ${BREAKPOINTS[breakpoint]}px)`;
   const mediaQueryResult = useMediaQuery(mediaQuery || undefined);
@@ -3905,9 +4022,9 @@ const useViewportMatch = (breakpoint, operator = '>=') => {
 
 useViewportMatch.__experimentalWidthProvider = ViewportMatchWidthContext.Provider;
 /* harmony default export */ var use_viewport_match = (useViewportMatch);
-//# sourceMappingURL=index.js.map
+
 // EXTERNAL MODULE: ./node_modules/react-resize-aware/dist/index.js
-var dist = __webpack_require__(5464);
+var dist = __webpack_require__(235);
 var dist_default = /*#__PURE__*/__webpack_require__.n(dist);
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-resize-observer/index.js
 /**
@@ -3941,7 +4058,7 @@ var dist_default = /*#__PURE__*/__webpack_require__.n(dist);
  */
 
 /* harmony default export */ var use_resize_observer = ((dist_default()));
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: external ["wp","priorityQueue"]
 var external_wp_priorityQueue_namespaceObject = window["wp"]["priorityQueue"];
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-async-list/index.js
@@ -3984,9 +4101,10 @@ function getFirstItemsPresentInState(list, state) {
  */
 
 
-function useAsyncList(list, config = {
-  step: 1
-}) {
+function useAsyncList(list) {
+  let config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+    step: 1
+  };
   const {
     step = 1
   } = config;
@@ -4020,7 +4138,7 @@ function useAsyncList(list, config = {
 }
 
 /* harmony default export */ var use_async_list = (useAsyncList);
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-warn-on-change/index.js
 /**
  * Internal dependencies
@@ -4049,9 +4167,12 @@ function useAsyncList(list, config = {
  * @param {string} prefix Just a prefix to show when console logging.
  */
 
-function useWarnOnChange(object, prefix = 'Change detection') {
+function useWarnOnChange(object) {
+  let prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Change detection';
   const previousValues = usePrevious(object);
-  Object.entries(previousValues !== null && previousValues !== void 0 ? previousValues : []).forEach(([key, value]) => {
+  Object.entries(previousValues !== null && previousValues !== void 0 ? previousValues : []).forEach(_ref => {
+    let [key, value] = _ref;
+
     if (value !== object[
     /** @type {keyof typeof object} */
     key]) {
@@ -4066,9 +4187,9 @@ function useWarnOnChange(object, prefix = 'Change detection') {
 }
 
 /* harmony default export */ var use_warn_on_change = (useWarnOnChange);
-//# sourceMappingURL=index.js.map
+
 // EXTERNAL MODULE: external "React"
-var external_React_ = __webpack_require__(3804);
+var external_React_ = __webpack_require__(9196);
 ;// CONCATENATED MODULE: ./node_modules/use-memo-one/dist/use-memo-one.esm.js
 
 
@@ -4149,7 +4270,7 @@ function useDebounce(fn, wait, options) {
   (0,external_wp_element_namespaceObject.useEffect)(() => () => debounced.cancel(), [debounced]);
   return debounced;
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-throttle/index.js
 /**
  * External dependencies
@@ -4182,7 +4303,7 @@ function useThrottle(fn, wait, options) {
   (0,external_wp_element_namespaceObject.useEffect)(() => () => throttled.cancel(), [throttled]);
   return throttled;
 }
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-drop-zone/index.js
 /**
  * WordPress dependencies
@@ -4235,15 +4356,16 @@ function useFreshRef(value) {
  */
 
 
-function useDropZone({
-  isDisabled,
-  onDrop: _onDrop,
-  onDragStart: _onDragStart,
-  onDragEnter: _onDragEnter,
-  onDragLeave: _onDragLeave,
-  onDragEnd: _onDragEnd,
-  onDragOver: _onDragOver
-}) {
+function useDropZone(_ref) {
+  let {
+    isDisabled,
+    onDrop: _onDrop,
+    onDragStart: _onDragStart,
+    onDragEnter: _onDragEnter,
+    onDragLeave: _onDragLeave,
+    onDragEnd: _onDragEnd,
+    onDragOver: _onDragOver
+  } = _ref;
   const onDropRef = useFreshRef(_onDrop);
   const onDragStartRef = useFreshRef(_onDragStart);
   const onDragEnterRef = useFreshRef(_onDragEnter);
@@ -4420,7 +4542,213 @@ function useDropZone({
     };
   }, [isDisabled]);
 }
-//# sourceMappingURL=index.js.map
+
+;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-focusable-iframe/index.js
+/**
+ * Internal dependencies
+ */
+
+/**
+ * Dispatches a bubbling focus event when the iframe receives focus. Use
+ * `onFocus` as usual on the iframe or a parent element.
+ *
+ * @return {Object} Ref to pass to the iframe.
+ */
+
+function useFocusableIframe() {
+  return useRefEffect(element => {
+    const {
+      ownerDocument
+    } = element;
+    if (!ownerDocument) return;
+    const {
+      defaultView
+    } = ownerDocument;
+    if (!defaultView) return;
+    /**
+     * Checks whether the iframe is the activeElement, inferring that it has
+     * then received focus, and dispatches a focus event.
+     */
+
+    function checkFocus() {
+      if (ownerDocument && ownerDocument.activeElement === element) {
+        /** @type {HTMLElement} */
+        element.focus();
+      }
+    }
+
+    defaultView.addEventListener('blur', checkFocus);
+    return () => {
+      defaultView.removeEventListener('blur', checkFocus);
+    };
+  }, []);
+}
+
+;// CONCATENATED MODULE: ./packages/compose/build-module/hooks/use-fixed-window-list/index.js
+/**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+const DEFAULT_INIT_WINDOW_SIZE = 30;
+/**
+ * @typedef {Object} WPFixedWindowList
+ *
+ * @property {number}                  visibleItems Items visible in the current viewport
+ * @property {number}                  start        Start index of the window
+ * @property {number}                  end          End index of the window
+ * @property {(index:number)=>boolean} itemInView   Returns true if item is in the window
+ */
+
+/**
+ * @typedef {Object} WPFixedWindowListOptions
+ *
+ * @property {number}  [windowOverscan] Renders windowOverscan number of items before and after the calculated visible window.
+ * @property {boolean} [useWindowing]   When false avoids calculating the window size
+ * @property {number}  [initWindowSize] Initial window size to use on first render before we can calculate the window size.
+ */
+
+/**
+ *
+ * @param {import('react').RefObject<HTMLElement>} elementRef Used to find the closest scroll container that contains element.
+ * @param { number }                               itemHeight Fixed item height in pixels
+ * @param { number }                               totalItems Total items in list
+ * @param { WPFixedWindowListOptions }             [options]  Options object
+ * @return {[ WPFixedWindowList, setFixedListWindow:(nextWindow:WPFixedWindowList)=>void]} Array with the fixed window list and setter
+ */
+
+function useFixedWindowList(elementRef, itemHeight, totalItems, options) {
+  var _options$initWindowSi, _options$useWindowing;
+
+  const initWindowSize = (_options$initWindowSi = options === null || options === void 0 ? void 0 : options.initWindowSize) !== null && _options$initWindowSi !== void 0 ? _options$initWindowSi : DEFAULT_INIT_WINDOW_SIZE;
+  const useWindowing = (_options$useWindowing = options === null || options === void 0 ? void 0 : options.useWindowing) !== null && _options$useWindowing !== void 0 ? _options$useWindowing : true;
+  const [fixedListWindow, setFixedListWindow] = (0,external_wp_element_namespaceObject.useState)({
+    visibleItems: initWindowSize,
+    start: 0,
+    end: initWindowSize,
+    itemInView: (
+    /** @type {number} */
+    index) => {
+      return index >= 0 && index <= initWindowSize;
+    }
+  });
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    var _scrollContainer$owne, _scrollContainer$owne2, _scrollContainer$owne3, _scrollContainer$owne4;
+
+    if (!useWindowing) {
+      return;
+    }
+
+    const scrollContainer = (0,external_wp_dom_namespaceObject.getScrollContainer)(elementRef.current);
+
+    const measureWindow = (
+    /** @type {boolean | undefined} */
+    initRender) => {
+      var _options$windowOversc;
+
+      if (!scrollContainer) {
+        return;
+      }
+
+      const visibleItems = Math.ceil(scrollContainer.clientHeight / itemHeight); // Aim to keep opening list view fast, afterward we can optimize for scrolling
+
+      const windowOverscan = initRender ? visibleItems : (_options$windowOversc = options === null || options === void 0 ? void 0 : options.windowOverscan) !== null && _options$windowOversc !== void 0 ? _options$windowOversc : visibleItems;
+      const firstViewableIndex = Math.floor(scrollContainer.scrollTop / itemHeight);
+      const start = Math.max(0, firstViewableIndex - windowOverscan);
+      const end = Math.min(totalItems - 1, firstViewableIndex + visibleItems + windowOverscan);
+      setFixedListWindow(lastWindow => {
+        const nextWindow = {
+          visibleItems,
+          start,
+          end,
+          itemInView: (
+          /** @type {number} */
+          index) => {
+            return start <= index && index <= end;
+          }
+        };
+
+        if (lastWindow.start !== nextWindow.start || lastWindow.end !== nextWindow.end || lastWindow.visibleItems !== nextWindow.visibleItems) {
+          return nextWindow;
+        }
+
+        return lastWindow;
+      });
+    };
+
+    measureWindow(true);
+    const debounceMeasureList = (0,external_lodash_namespaceObject.debounce)(() => {
+      measureWindow();
+    }, 16);
+    scrollContainer === null || scrollContainer === void 0 ? void 0 : scrollContainer.addEventListener('scroll', debounceMeasureList);
+    scrollContainer === null || scrollContainer === void 0 ? void 0 : (_scrollContainer$owne = scrollContainer.ownerDocument) === null || _scrollContainer$owne === void 0 ? void 0 : (_scrollContainer$owne2 = _scrollContainer$owne.defaultView) === null || _scrollContainer$owne2 === void 0 ? void 0 : _scrollContainer$owne2.addEventListener('resize', debounceMeasureList);
+    scrollContainer === null || scrollContainer === void 0 ? void 0 : (_scrollContainer$owne3 = scrollContainer.ownerDocument) === null || _scrollContainer$owne3 === void 0 ? void 0 : (_scrollContainer$owne4 = _scrollContainer$owne3.defaultView) === null || _scrollContainer$owne4 === void 0 ? void 0 : _scrollContainer$owne4.addEventListener('resize', debounceMeasureList);
+    return () => {
+      var _scrollContainer$owne5, _scrollContainer$owne6;
+
+      scrollContainer === null || scrollContainer === void 0 ? void 0 : scrollContainer.removeEventListener('scroll', debounceMeasureList);
+      scrollContainer === null || scrollContainer === void 0 ? void 0 : (_scrollContainer$owne5 = scrollContainer.ownerDocument) === null || _scrollContainer$owne5 === void 0 ? void 0 : (_scrollContainer$owne6 = _scrollContainer$owne5.defaultView) === null || _scrollContainer$owne6 === void 0 ? void 0 : _scrollContainer$owne6.removeEventListener('resize', debounceMeasureList);
+    };
+  }, [itemHeight, elementRef, totalItems]);
+  (0,external_wp_element_namespaceObject.useLayoutEffect)(() => {
+    var _scrollContainer$owne7, _scrollContainer$owne8;
+
+    if (!useWindowing) {
+      return;
+    }
+
+    const scrollContainer = (0,external_wp_dom_namespaceObject.getScrollContainer)(elementRef.current);
+
+    const handleKeyDown = (
+    /** @type {KeyboardEvent} */
+    event) => {
+      switch (event.keyCode) {
+        case external_wp_keycodes_namespaceObject.HOME:
+          {
+            return scrollContainer === null || scrollContainer === void 0 ? void 0 : scrollContainer.scrollTo({
+              top: 0
+            });
+          }
+
+        case external_wp_keycodes_namespaceObject.END:
+          {
+            return scrollContainer === null || scrollContainer === void 0 ? void 0 : scrollContainer.scrollTo({
+              top: totalItems * itemHeight
+            });
+          }
+
+        case external_wp_keycodes_namespaceObject.PAGEUP:
+          {
+            return scrollContainer === null || scrollContainer === void 0 ? void 0 : scrollContainer.scrollTo({
+              top: scrollContainer.scrollTop - fixedListWindow.visibleItems * itemHeight
+            });
+          }
+
+        case external_wp_keycodes_namespaceObject.PAGEDOWN:
+          {
+            return scrollContainer === null || scrollContainer === void 0 ? void 0 : scrollContainer.scrollTo({
+              top: scrollContainer.scrollTop + fixedListWindow.visibleItems * itemHeight
+            });
+          }
+      }
+    };
+
+    scrollContainer === null || scrollContainer === void 0 ? void 0 : (_scrollContainer$owne7 = scrollContainer.ownerDocument) === null || _scrollContainer$owne7 === void 0 ? void 0 : (_scrollContainer$owne8 = _scrollContainer$owne7.defaultView) === null || _scrollContainer$owne8 === void 0 ? void 0 : _scrollContainer$owne8.addEventListener('keydown', handleKeyDown);
+    return () => {
+      var _scrollContainer$owne9, _scrollContainer$owne10;
+
+      scrollContainer === null || scrollContainer === void 0 ? void 0 : (_scrollContainer$owne9 = scrollContainer.ownerDocument) === null || _scrollContainer$owne9 === void 0 ? void 0 : (_scrollContainer$owne10 = _scrollContainer$owne9.defaultView) === null || _scrollContainer$owne10 === void 0 ? void 0 : _scrollContainer$owne10.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [totalItems, itemHeight, elementRef, fixedListWindow.visibleItems]);
+  return [fixedListWindow, setFixedListWindow];
+}
+
 ;// CONCATENATED MODULE: ./packages/compose/build-module/index.js
 // Utils
  // Compose helper (aliased flowRight from Lodash)
@@ -4457,7 +4785,10 @@ function useDropZone({
 
 
 
-//# sourceMappingURL=index.js.map
+
+
+
+
 }();
 (window.wp = window.wp || {}).compose = __webpack_exports__;
 /******/ })()

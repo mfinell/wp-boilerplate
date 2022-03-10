@@ -94,7 +94,10 @@ var external_wp_data_namespaceObject = window["wp"]["data"];
  * @return {Array} Updated state.
  */
 
-function guides(state = [], action) {
+function guides() {
+  let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  let action = arguments.length > 1 ? arguments[1] : undefined;
+
   switch (action.type) {
     case 'TRIGGER_GUIDE':
       return [...state, action.tipIds];
@@ -111,7 +114,10 @@ function guides(state = [], action) {
  * @return {boolean} Updated state.
  */
 
-function areTipsEnabled(state = true, action) {
+function areTipsEnabled() {
+  let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+  let action = arguments.length > 1 ? arguments[1] : undefined;
+
   switch (action.type) {
     case 'DISABLE_TIPS':
       return false;
@@ -132,7 +138,10 @@ function areTipsEnabled(state = true, action) {
  * @return {Object} Updated state.
  */
 
-function dismissedTips(state = {}, action) {
+function dismissedTips() {
+  let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  let action = arguments.length > 1 ? arguments[1] : undefined;
+
   switch (action.type) {
     case 'DISMISS_TIP':
       return { ...state,
@@ -153,7 +162,7 @@ const preferences = (0,external_wp_data_namespaceObject.combineReducers)({
   guides,
   preferences
 }));
-//# sourceMappingURL=reducer.js.map
+
 ;// CONCATENATED MODULE: ./packages/nux/build-module/store/actions.js
 /**
  * Returns an action object that, when dispatched, presents a guide that takes
@@ -207,7 +216,7 @@ function enableTips() {
     type: 'ENABLE_TIPS'
   };
 }
-//# sourceMappingURL=actions.js.map
+
 ;// CONCATENATED MODULE: ./node_modules/rememo/es/rememo.js
 
 
@@ -565,7 +574,7 @@ function isTipVisible(state, tipId) {
 function selectors_areTipsEnabled(state) {
   return state.preferences.areTipsEnabled;
 }
-//# sourceMappingURL=selectors.js.map
+
 ;// CONCATENATED MODULE: ./packages/nux/build-module/store/index.js
 /**
  * WordPress dependencies
@@ -601,7 +610,7 @@ const store = (0,external_wp_data_namespaceObject.createReduxStore)(STORE_NAME, 
   selectors: selectors_namespaceObject,
   persist: ['preferences']
 });
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: external ["wp","element"]
 var external_wp_element_namespaceObject = window["wp"]["element"];
 ;// CONCATENATED MODULE: external ["wp","compose"]
@@ -626,7 +635,7 @@ const close_close = (0,external_wp_element_namespaceObject.createElement)(extern
   d: "M13 11.8l6.1-6.3-1-1-6.1 6.2-6.1-6.2-1 1 6.1 6.3-6.5 6.7 1 1 6.5-6.6 6.5 6.6 1-1z"
 }));
 /* harmony default export */ var library_close = (close_close);
-//# sourceMappingURL=close.js.map
+
 ;// CONCATENATED MODULE: ./packages/nux/build-module/components/dot-tip/index.js
 
 
@@ -651,14 +660,15 @@ function onClick(event) {
   event.stopPropagation();
 }
 
-function DotTip({
-  position = 'middle right',
-  children,
-  isVisible,
-  hasNextTip,
-  onDismiss,
-  onDisable
-}) {
+function DotTip(_ref) {
+  let {
+    position = 'middle right',
+    children,
+    isVisible,
+    hasNextTip,
+    onDismiss,
+    onDisable
+  } = _ref;
   const anchorParent = (0,external_wp_element_namespaceObject.useRef)(null);
   const onFocusOutsideCallback = (0,external_wp_element_namespaceObject.useCallback)(event => {
     if (!anchorParent.current) {
@@ -696,9 +706,10 @@ function DotTip({
     onClick: onDisable
   }));
 }
-/* harmony default export */ var dot_tip = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)((select, {
-  tipId
-}) => {
+/* harmony default export */ var dot_tip = ((0,external_wp_compose_namespaceObject.compose)((0,external_wp_data_namespaceObject.withSelect)((select, _ref2) => {
+  let {
+    tipId
+  } = _ref2;
   const {
     isTipVisible,
     getAssociatedGuide
@@ -708,9 +719,10 @@ function DotTip({
     isVisible: isTipVisible(tipId),
     hasNextTip: !!(associatedGuide && associatedGuide.nextTipId)
   };
-}), (0,external_wp_data_namespaceObject.withDispatch)((dispatch, {
-  tipId
-}) => {
+}), (0,external_wp_data_namespaceObject.withDispatch)((dispatch, _ref3) => {
+  let {
+    tipId
+  } = _ref3;
   const {
     dismissTip,
     disableTips
@@ -726,7 +738,7 @@ function DotTip({
 
   };
 }))(DotTip));
-//# sourceMappingURL=index.js.map
+
 ;// CONCATENATED MODULE: ./packages/nux/build-module/index.js
 /**
  * WordPress dependencies
@@ -736,9 +748,10 @@ function DotTip({
 
 external_wp_deprecated_default()('wp.nux', {
   since: '5.4',
-  hint: 'wp.components.Guide can be used to show a user guide.'
+  hint: 'wp.components.Guide can be used to show a user guide.',
+  version: '6.2'
 });
-//# sourceMappingURL=index.js.map
+
 (window.wp = window.wp || {}).nux = __webpack_exports__;
 /******/ })()
 ;

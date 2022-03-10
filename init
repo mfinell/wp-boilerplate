@@ -1,6 +1,7 @@
 <?php
 
 $site_name = readline( 'Site directory name: ' );
+$site_dir = '../' . $site_name;
 $plugins_dir = 'content/plugins';
 
 // Get list of available plugins
@@ -60,3 +61,27 @@ $plugins_to_install = array_filter(
 	},
 	ARRAY_FILTER_USE_KEY
 );
+
+function copy_folder($src, $dst) { 
+    // open the source directory
+    $dir = opendir($src); 
+  
+    // Make the destination directory if not exist
+    @mkdir($dst); 
+  
+    // Loop through the files in source directory
+    while( $file = readdir($dir) ) { 
+        if ( ( $file != '.' ) && ( $file != '..' ) ) { 
+            if ( is_dir($src . '/' . $file) ) { 
+				copy_folder( $src . '/' . $file, $dst . '/' . $file );   
+            } else { 
+                copy( $src . '/' . $file, $dst . '/' . $file ); 
+            } 
+        } 
+    } 
+  
+    closedir($dir);
+}
+
+
+copy_folder( 'wp', $site_dir . '/wp' );

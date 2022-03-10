@@ -76,7 +76,7 @@ class WP_REST_Block_Editor_Settings_Controller extends WP_REST_Controller {
 	 */
 	public function get_items( $request ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis
 		$editor_context = new WP_Block_Editor_Context();
-		$settings       = gutenberg_get_block_editor_settings( array(), $editor_context );
+		$settings       = get_block_editor_settings( array(), $editor_context );
 
 		return rest_ensure_response( $settings );
 	}
@@ -132,18 +132,6 @@ class WP_REST_Block_Editor_Settings_Controller extends WP_REST_Controller {
 					'description' => __( 'Settings consolidated from core, theme, and user origins.', 'gutenberg' ),
 					'type'        => 'object',
 					'context'     => array( 'post-editor', 'site-editor', 'widgets-editor', 'mobile' ),
-				),
-
-				'__experimentalGlobalStylesUserEntityId' => array(
-					'description' => __( 'Global styles user entity ID.', 'gutenberg' ),
-					'type'        => 'integer',
-					'context'     => array( 'site-editor' ),
-				),
-
-				'__experimentalGlobalStylesBaseStyles'   => array(
-					'description' => __( 'Global styles settings.', 'gutenberg' ),
-					'type'        => 'object',
-					'context'     => array( 'site-editor' ),
 				),
 
 				'__experimentalStyles'                   => array(

@@ -410,14 +410,14 @@ function closeOuterElement(endOffset) {
 }
 
 /* harmony default export */ var create_interpolate_element = (createInterpolateElement);
-//# sourceMappingURL=create-interpolate-element.js.map
+
 ;// CONCATENATED MODULE: external "lodash"
 var external_lodash_namespaceObject = window["lodash"];
 ;// CONCATENATED MODULE: ./packages/element/build-module/react.js
 /**
  * External dependencies
  */
-// eslint-disable-next-line no-restricted-imports
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 
 
 /**
@@ -595,7 +595,11 @@ var external_lodash_namespaceObject = window["lodash"];
  * @return {Array} The concatenated value.
  */
 
-function concatChildren(...childrenArguments) {
+function concatChildren() {
+  for (var _len = arguments.length, childrenArguments = new Array(_len), _key = 0; _key < _len; _key++) {
+    childrenArguments[_key] = arguments[_key];
+  }
+
   return childrenArguments.reduce((accumulator, children, i) => {
     external_React_namespaceObject.Children.forEach(children, (child, j) => {
       if (child && 'string' !== typeof child) {
@@ -636,7 +640,7 @@ function switchChildrenNodeName(children, nodeName) {
     }, childrenProp);
   });
 }
-//# sourceMappingURL=react.js.map
+
 ;// CONCATENATED MODULE: external "ReactDOM"
 var external_ReactDOM_namespaceObject = window["ReactDOM"];
 ;// CONCATENATED MODULE: ./packages/element/build-module/react-platform.js
@@ -677,7 +681,7 @@ var external_ReactDOM_namespaceObject = window["ReactDOM"];
  */
 
 
-//# sourceMappingURL=react-platform.js.map
+
 ;// CONCATENATED MODULE: ./packages/element/build-module/utils.js
 /**
  * External dependencies
@@ -701,7 +705,7 @@ const isEmptyElement = element => {
 
   return !element;
 };
-//# sourceMappingURL=utils.js.map
+
 ;// CONCATENATED MODULE: ./packages/element/build-module/platform.js
 /**
  * Parts of this source were derived and modified from react-native-web,
@@ -737,7 +741,7 @@ const Platform = {
  */
 
 /* harmony default export */ var platform = (Platform);
-//# sourceMappingURL=platform.js.map
+
 ;// CONCATENATED MODULE: external ["wp","escapeHtml"]
 var external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
 ;// CONCATENATED MODULE: ./packages/element/build-module/raw-html.js
@@ -754,26 +758,35 @@ var external_wp_escapeHtml_namespaceObject = window["wp"]["escapeHtml"];
  * To preserve additional props, a `div` wrapper _will_ be created if any props
  * aside from `children` are passed.
  *
- * @param {RawHTMLProps} props Children should be a string of HTML. Other props
- *                             will be passed through to div wrapper.
+ * @param {RawHTMLProps} props Children should be a string of HTML or an array
+ *                             of strings. Other props will be passed through
+ *                             to the div wrapper.
  *
  * @return {JSX.Element} Dangerously-rendering component.
  */
 
-function RawHTML({
-  children,
-  ...props
-}) {
-  // The DIV wrapper will be stripped by serializer, unless there are
-  // non-children props present.
+function RawHTML(_ref) {
+  let {
+    children,
+    ...props
+  } = _ref;
+  let rawHtml = ''; // Cast children as an array, and concatenate each element if it is a string.
+
+  external_React_namespaceObject.Children.toArray(children).forEach(child => {
+    if (typeof child === 'string' && child.trim() !== '') {
+      rawHtml += child;
+    }
+  }); // The `div` wrapper will be stripped by the `renderElement` serializer in
+  // `./serialize.js` unless there are non-children props present.
+
   return (0,external_React_namespaceObject.createElement)('div', {
     dangerouslySetInnerHTML: {
-      __html: children
+      __html: rawHtml
     },
     ...props
   });
 }
-//# sourceMappingURL=raw-html.js.map
+
 ;// CONCATENATED MODULE: ./packages/element/build-module/serialize.js
 /**
  * Parts of this source were derived and modified from fast-react-render,
@@ -1015,7 +1028,9 @@ function getNormalStylePropertyValue(property, value) {
  */
 
 
-function renderElement(element, context, legacyContext = {}) {
+function renderElement(element, context) {
+  let legacyContext = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
   if (null === element || undefined === element || false === element) {
     return '';
   }
@@ -1093,7 +1108,8 @@ function renderElement(element, context, legacyContext = {}) {
  * @return {string} Serialized element.
  */
 
-function renderNativeComponent(type, props, context, legacyContext = {}) {
+function renderNativeComponent(type, props, context) {
+  let legacyContext = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   let content = '';
 
   if (type === 'textarea' && props.hasOwnProperty('value')) {
@@ -1134,7 +1150,8 @@ function renderNativeComponent(type, props, context, legacyContext = {}) {
  * @return {string} Serialized element
  */
 
-function renderComponent(Component, props, context, legacyContext = {}) {
+function renderComponent(Component, props, context) {
+  let legacyContext = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   const instance = new
   /** @type {import('react').ComponentClass} */
   Component(props, legacyContext);
@@ -1162,7 +1179,8 @@ function renderComponent(Component, props, context, legacyContext = {}) {
  * @return {string} Serialized children.
  */
 
-function renderChildren(children, context, legacyContext = {}) {
+function renderChildren(children, context) {
+  let legacyContext = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   let result = '';
   children = (0,external_lodash_namespaceObject.castArray)(children);
 
@@ -1268,7 +1286,7 @@ function renderStyle(style) {
   return result;
 }
 /* harmony default export */ var serialize = (renderElement);
-//# sourceMappingURL=serialize.js.map
+
 ;// CONCATENATED MODULE: ./packages/element/build-module/index.js
 
 
@@ -1277,7 +1295,7 @@ function renderStyle(style) {
 
 
 
-//# sourceMappingURL=index.js.map
+
 (window.wp = window.wp || {}).element = __webpack_exports__;
 /******/ })()
 ;
