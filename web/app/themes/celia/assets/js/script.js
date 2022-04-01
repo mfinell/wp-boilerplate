@@ -1,0 +1,1 @@
+const sections = document.querySelectorAll( '.wp-block-mf-containers-section' );

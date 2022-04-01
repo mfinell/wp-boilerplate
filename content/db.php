@@ -1,1 +1,0 @@
-/Users/markusfinell/Valet/wp-skeleton/content/plugins/query-monitor/wp-content/db.php
