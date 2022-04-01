@@ -1,0 +1,3 @@
+[submodule "web/app/plugins/mf-containers"]
+	path = web/app/plugins/mf-containers
+	url = https://github.com/mfinell/mf-containers.git
