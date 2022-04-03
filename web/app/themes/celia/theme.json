@@ -31,7 +31,62 @@
 			]
 		}
 	},
-	"styles": {},
+	"styles": {
+		"blocks": {
+			"core/cover": {
+				"padding": "0"
+			}
+		},
+		"color": {
+			"background": "var(--wp--preset--color--background)",
+			"text": "var(--wp--preset--color--foreground)"
+		},
+		"elements": {
+			"h1": {
+				"typography": {
+					"fontWeight": "200",
+					"letterSpacing": "0.1em"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontWeight": "200",
+					"letterSpacing": "0.075em"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontWeight": "200",
+					"letterSpacing": "0.05em"
+				}
+			},
+			"h4": {
+				"typography": {
+					"fontWeight": "200"
+				}
+			},
+			"h5": {
+				"typography": {
+					"fontWeight": "400"
+				}
+			},
+			"h6": {
+				"typography": {
+					"fontWeight": "600"
+				}
+			}
+		},
+		"spacing": {
+			"blockGap": ""
+		},
+		"typography": {
+			"fontFamily": "Helvetica, sans-serif",
+			"lineHeight": "1.5",
+			"fontSize": "var(--wp--preset--font-size--base)",
+			"letterSpacing": "0.01em",
+			"fontWeight": "200"
+		}
+	},
 	"customTemplates": {},
 	"templateParts": {}
 }

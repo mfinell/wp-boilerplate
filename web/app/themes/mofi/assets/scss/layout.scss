@@ -1,0 +1,22 @@
+
+$sizes: (
+	'xs',
+	'sm',
+	'lg',
+	'xl',
+	'2-xl',
+	'3-xl',
+	'4-xl'
+);
+
+.l-stack {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--custom--spacing--base);
+	
+	@each $size in $sizes {
+		&.is-style-#{$size} {
+			gap: var(--wp--custom--spacing--#{$size});
+		}
+	}
+}

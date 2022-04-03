@@ -1,0 +1,16 @@
+{
+	"liveSassCompile.settings.generateMap": false,
+	"liveSassCompile.settings.formats":[
+        // {
+        //     "format": "expanded",
+        //     "extensionName": ".css",
+        //     "savePath": "/web/app/themes/mofi/assets/css"
+        // },
+        {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": "/web/app/themes/mofi/assets/css"
+        },
+	],
+    "liveSassCompile.settings.includeItems": ["web/app/themes/mofi/assets/scss/*"]
+}

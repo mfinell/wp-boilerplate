@@ -21,11 +21,11 @@ if ( ! function_exists( 'mofi_support' ) ) :
 	 */
 	function mofi_support() {
 
-		// Add support for block styles.
-		add_theme_support( 'wp-block-styles' );
+		add_theme_support( 'editor-styles' );
 
 		// Enqueue editor styles.
 		add_editor_style( 'style.css' );
+		add_editor_style( '/assets/css/layout.min.css' );
 
 	}
 
@@ -54,9 +54,6 @@ if ( ! function_exists( 'mofi_styles' ) ) :
 			$version_string
 		);
 
-		// Add styles inline.
-		wp_add_inline_style( 'mofi-style', mofi_get_font_face_styles() );
-
 		// Enqueue theme stylesheet.
 		wp_enqueue_style( 'mofi-style' );
 
@@ -76,76 +73,29 @@ if ( ! function_exists( 'mofi_editor_styles' ) ) :
 	 * @return void
 	 */
 	function mofi_editor_styles() {
-
-		// Add styles inline.
-		wp_add_inline_style( 'wp-block-library', mofi_get_font_face_styles() );
-
+		//add_editor_style( 'editor-style.css' );
 	}
 
 endif;
 
 add_action( 'admin_init', 'mofi_editor_styles' );
 
-
-if ( ! function_exists( 'mofi_get_font_face_styles' ) ) :
-
-	/**
-	 * Get font face styles.
-	 * Called by functions mofi_styles() and mofi_editor_styles() above.
-	 *
-	 * @since Mofi 1.0
-	 *
-	 * @return string
-	 */
-	function mofi_get_font_face_styles() {
-
-		return "
-		@font-face{
-			font-family: 'Source Serif Pro';
-			font-weight: 200 900;
-			font-style: normal;
-			font-stretch: normal;
-			font-display: swap;
-			src: url('" . get_theme_file_uri( 'assets/fonts/SourceSerif4Variable-Roman.ttf.woff2' ) . "') format('woff2');
-		}
-
-		@font-face{
-			font-family: 'Source Serif Pro';
-			font-weight: 200 900;
-			font-style: italic;
-			font-stretch: normal;
-			font-display: swap;
-			src: url('" . get_theme_file_uri( 'assets/fonts/SourceSerif4Variable-Italic.ttf.woff2' ) . "') format('woff2');
-		}
-		";
-
+if ( ! function_exists( 'mofi_editor_scripts' ) ) :
+	function mofi_editor_scripts() {
+		wp_enqueue_script(
+			'mofi-block-script',
+			get_template_directory_uri() . '/assets/js/editor.js',
+			[
+			  'wp-blocks',
+			  'wp-dom-ready',
+			  'wp-edit-post',
+			  'wp-i18n'
+			],
+			filemtime(get_template_directory() . '/assets/js/editor.js')
+		);
 	}
-
 endif;
 
-if ( ! function_exists( 'mofi_preload_webfonts' ) ) :
+add_action('enqueue_block_editor_assets', 'mofi_editor_scripts' );
 
-	/**
-	 * Preloads the main web font to improve performance.
-	 *
-	 * Only the main web font (font-style: normal) is preloaded here since that font is always relevant (it is used
-	 * on every heading, for example). The other font is only needed if there is any applicable content in italic style,
-	 * and therefore preloading it would in most cases regress performance when that font would otherwise not be loaded
-	 * at all.
-	 *
-	 * @since Mofi 1.0
-	 *
-	 * @return void
-	 */
-	function mofi_preload_webfonts() {
-		?>
-		<link rel="preload" href="<?php echo esc_url( get_theme_file_uri( 'assets/fonts/SourceSerif4Variable-Roman.ttf.woff2' ) ); ?>" as="font" type="font/woff2" crossorigin>
-		<?php
-	}
-
-endif;
-
-add_action( 'wp_head', 'mofi_preload_webfonts' );
-
-// Add block patterns
-require get_template_directory() . '/inc/block-patterns.php';
+require_once get_template_directory() . '/inc/block-styles.php';
