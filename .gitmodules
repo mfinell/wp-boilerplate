@@ -4,3 +4,6 @@
 [submodule "web/app/plugins/mf-layouts"]
 	path = web/app/plugins/mf-layouts
 	url = https://github.com/mfinell/mf-layouts.git
+[submodule "web/app/themes/mofi"]
+	path = web/app/themes/mofi
+	url = https://github.com/mfinell/mofi.git
