@@ -7,3 +7,6 @@
 [submodule "web/app/themes/mofi"]
 	path = web/app/themes/mofi
 	url = https://github.com/mfinell/mofi.git
+[submodule "web/app/themes/celia"]
+	path = web/app/themes/celia
+	url = git@github.com:mfinell/celia.git
