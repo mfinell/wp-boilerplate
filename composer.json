@@ -40,7 +40,8 @@
     "roots/wordpress": "5.9.3",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.1.0",
-    "wpackagist-plugin/gutenberg": "^12.9"
+    "wpackagist-plugin/gutenberg": "^12.9",
+    "wpackagist-plugin/wordpress-beta-tester": "3.2.1"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.6.2",
@@ -60,7 +61,8 @@
     "installer-paths": {
       "web/app/mu-plugins/{$name}/": [
         "type:wordpress-muplugin",
-        "wpackagist-plugin/gutenberg"
+        "wpackagist-plugin/gutenberg",
+        "wpackagist-plugin/wordpress-beta-tester"
       ],
       "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
